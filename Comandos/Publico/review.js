@@ -6,6 +6,8 @@ const {
   MembershipScreeningFieldType,
 } = require("discord.js");
 
+const reviewSchema = require("../../schemas/Review/reviewSchema");
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("reseña")
@@ -26,7 +28,7 @@ module.exports = {
         )
       )
       .addStringOption((option) => option
-        .setName("descripcion")
+        .setName("bot-descripcion")
         .setDescription("Descripcion de tu reseña")
         .setRequired(true)
       ))
@@ -46,7 +48,7 @@ module.exports = {
         )
       )
       .addStringOption((option) => option
-        .setName("bot-descripcion")
+        .setName("descripcion")
         .setDescription("Descripcion de tu reseña")
         .setRequired(true)
       )),
@@ -68,7 +70,9 @@ module.exports = {
       },
       {
         name: "Reseña",
-        value: `${descripcion}`,
+        value: [
+          `${descripcion}`
+        ].join("\n")
       },
     ])
     .setColor(client.config.prefix)
@@ -88,7 +92,9 @@ module.exports = {
       },
       {
         name: "Reseña",
-        value: `${botdescripcion}`,
+        value: [
+          `${botdescripcion}`
+        ].join("\n")
       },
     ])
     .setColor(client.config.prefix)
@@ -130,9 +136,7 @@ module.exports = {
 
     if (interaction.options.getSubcommand() === 'bot') {
       try {
-        const canal = ("1063249310856269935")
-
-        const m = await canal.send({embeds: [embed3]});
+        client.guilds.cache.get("1056013704853991434").channels.cache.get("1063249310856269935").send({embeds: [embed3]});
         await interaction.reply({embeds: [embed2], ephemeral: true});
       } catch {
         const embed2 = new EmbedBuilder()
