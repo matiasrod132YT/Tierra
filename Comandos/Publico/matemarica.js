@@ -3,7 +3,7 @@ const math = require('mathjs'); // npm i mathjs
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('Calculadora')
+    .setName('calculadora')
     .setDescription('Calculadora en Discord'),
 
     async execute(interaction, client) {
