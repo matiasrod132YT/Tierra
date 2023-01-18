@@ -70,9 +70,7 @@ module.exports = {
       },
       {
         name: "Reseña",
-        value: [
-          `${descripcion}`
-        ].join("\n")
+        value: `${descripcion}`,
       },
     ])
     .setColor(client.config.prefix)
@@ -88,13 +86,11 @@ module.exports = {
     .addFields([
       {
         name: "Estrellas",
-        value: `${botestrellas}`,
+        value: `${botestrellas}`
       },
       {
         name: "Reseña",
-        value: [
-          `${botdescripcion}`
-        ].join("\n")
+        value: `${botdescripcion}`,
       },
     ])
     .setColor(client.config.prefix)
