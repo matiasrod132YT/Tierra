@@ -16,7 +16,7 @@ const {
      * @param {ChatInputCommandInteraction} interaction
      */
     execute(interaction, client) {
-      const link = `https://discord.com/api/oauth2/authorize?client_id=1055739238710251520&permissions=8&scope=bot`;
+      const link = `https://discord.com/api/oauth2/authorize?client_id=1053062638369787944&permissions=8&scope=bot`;
       const boton = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
         .setURL(link)
