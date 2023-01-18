@@ -10,7 +10,6 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("reseña")
     .setDescription("Manage roles of the server or members.")
-    .setDefaultMemberPermissions(PermissionFlagsBits.ManageRoles)
     .addSubcommand((subcommand) => subcommand
       .setName("bot")
       .setDescription("Manda una reseña al bot")
