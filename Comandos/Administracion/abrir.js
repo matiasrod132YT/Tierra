@@ -15,8 +15,9 @@ module.exports = {
         const { guild, channel } = interaction;
 
         const embed = new EmbedBuilder()
+        .setColor(client.config.prefix)
         
-        if(!channel.permissionsFor(guild.id).has("SendMessages"))
+        if(channel.permissionsFor(guild.id).has("SendMessages"))
         return interaction.reply({ embeds: [embed.setDescription("Este canal no esta cerrado")], ephemeral: true})
 
         channel.permissionOverwrites.edit(guild.id, {

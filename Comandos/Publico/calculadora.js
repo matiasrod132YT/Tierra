@@ -9,7 +9,7 @@ module.exports = {
     async execute(interaction, client) {
         const idPrefix = 'calulator'
         const embed = new EmbedBuilder()
-            .setDescription("```\nErgebnisse werden hier angezeigt\n```")
+            .setDescription("```\n0\n```")
             .setColor(client.config.prefix)
         const row = new ActionRowBuilder()
             .addComponents(

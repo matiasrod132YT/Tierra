@@ -10,6 +10,7 @@ module.exports = {
     data: new SlashCommandBuilder()
     .setName("cerrar")
     .setDescription("Cierra un canal")
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
     .addStringOption((option) => option
         .setName("tiempo")
         .setDescription("Tiempo para cerrar el canal: (1m, 1h, 1d)")
@@ -28,6 +29,7 @@ module.exports = {
         const tiempo = options.getString("tiempo") || "No hay tiempo definido / Infinito"
 
         const embed = new EmbedBuilder()
+        .setColor(client.config.prefix)
 
         if(!channel.permissionsFor(guild.id).has("SendMessages"))
         return interaction.reply({ embeds: [embed.setDescription("Este canal esta cerrado")], ephemeral: true})
@@ -57,7 +59,7 @@ module.exports = {
             })
             .catch(() => {});
 
-            await cerrarSchema.deleteOne({ ChannelID })
+            await cerrarSchema.deleteOne({ ChannelID: channel.id })
             }, ms(tiempos))
         }
     }
