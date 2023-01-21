@@ -1,10 +1,10 @@
 const { EmbedBuilder, SlashCommandBuilder, PermissionFlagsBits, ChannelType} = require('discord.js')
-const suggestionSetup = require('../../schemas/sugerencia/sugerenciaSetup')
+const reviewSchema = require('../../schemas/Review/reviewSchema')
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('setup-sugerencias')
-    .setDescription('Configura las sugerencias en el servidor!')
+    .setName('setup-reseñas')
+    .setDescription('Configura las reseñas en el servidor!')
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .addChannelOption(option => 
         option.setName('canal')
@@ -19,29 +19,29 @@ module.exports = {
         const embed = new EmbedBuilder()
         .setColor(client.config.prefix)
 
-        const sugerenciaCanal = options.getChannel('canal')
+        const reviewCanal = options.getChannel('canal')
 
-        suggestionSetup.findOne({ GuildId: interaction.guild.id}, async (err, data) => {
+        reviewSchema.findOne({ GuildId: interaction.guild.id}, async (err, data) => {
             if (err) throw err;
 
             if (!data) {
                 
-                interaction.reply({embeds: [embed.setDescription(`¡Se a configurado con exito las sugerencias!`)], ephemeral: true})
+                interaction.reply({embeds: [embed.setDescription(`¡Se a configurado con exito las reseñas!`)], ephemeral: true})
 
-                suggestionSetup.create({
+                reviewSchema.create({
                     GuildId: interaction.guild.id,
-                    ChannelId: sugerenciaCanal.id
+                    ChannelId: reviewCanal.id
                 })
             }
 
             if (data) {
-                interaction.reply({embeds: [embed.setDescription(`¡Se a configurado con exito las sugerencias!`)], ephemeral: true})
+                interaction.reply({embeds: [embed.setDescription(`¡Se a configurado con exito las reseñas!`)], ephemeral: true})
 
-                await suggestionSetup.findOneAndDelete({GuildId: interaction.guild.id, data})
+                await reviewSchema.findOneAndDelete({GuildId: interaction.guild.id, data})
 
-                suggestionSetup.create({
+                reviewSchema.create({
                     GuildId: interaction.guild.id,
-                    ChannelId: sugerenciaCanal.id
+                    ChannelId: reviewCanal.id
                 })
             }
         })

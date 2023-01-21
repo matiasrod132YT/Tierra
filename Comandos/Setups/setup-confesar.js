@@ -1,14 +1,14 @@
 const { EmbedBuilder, SlashCommandBuilder, PermissionFlagsBits, ChannelType} = require('discord.js')
-const reviewSchema = require('../../schemas/Review/reviewSchema')
+const confesionSchema = require('../../schemas/confesion/confesionSchema')
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('setup-review')
-    .setDescription('Sets up the suggestions for this server!')
+    .setName('setup-confesiones')
+    .setDescription('Configura las confesiones en el servidor!')
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .addChannelOption(option => 
         option.setName('canal')
-        .setDescription('¿En qué canal quieres las sugerencias?')
+        .setDescription('¿En qué canal quieres las confesiones?')
         .addChannelTypes(ChannelType.GuildText)
         .setRequired(true)
     ),
@@ -19,29 +19,29 @@ module.exports = {
         const embed = new EmbedBuilder()
         .setColor(client.config.prefix)
 
-        const reviewCanal = options.getChannel('canal')
+        const confesionCanal = options.getChannel('canal')
 
-        reviewSchema.findOne({ GuildId: interaction.guild.id}, async (err, data) => {
+        confesionSchema.findOne({ GuildId: interaction.guild.id}, async (err, data) => {
             if (err) throw err;
 
             if (!data) {
                 
-                interaction.reply({embeds: [embed.setDescription(`¡Se a configurado con exito el review!`)], ephemeral: true})
+                interaction.reply({embeds: [embed.setDescription(`¡Se a configurado con exito las confesiones!`)], ephemeral: true})
 
-                reviewSchema.create({
+                confesionSchema.create({
                     GuildId: interaction.guild.id,
-                    ChannelId: reviewCanal.id
+                    ChannelId: confesionCanal.id
                 })
             }
 
             if (data) {
-                interaction.reply({embeds: [embed.setDescription(`¡Se a configurado con exito el review!`)], ephemeral: true})
+                interaction.reply({embeds: [embed.setDescription(`¡Se a configurado con exito las confesiones!`)], ephemeral: true})
 
                 await reviewSchema.findOneAndDelete({GuildId: interaction.guild.id, data})
 
-                reviewSchema.create({
+                confesionSchema.create({
                     GuildId: interaction.guild.id,
-                    ChannelId: reviewCanal.id
+                    ChannelId: confesionCanal.id
                 })
             }
         })
