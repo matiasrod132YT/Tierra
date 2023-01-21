@@ -74,3 +74,52 @@ process.on("unhandledRejection", (razon, p) => {
     ],
   });
 });
+
+const nivelSchema = require("./schemas/nivel/nivel");
+client.on(Events.MessageCreate, async (message) => {
+  
+  const { guild, author } = message;
+  
+  if(!guild || author.bot) return;
+
+  nivelSchema.findOne({ Guild: guild.id, User: author.id}, async (err, data) => {
+    if (err) throw err;
+
+    if(!data) {
+      nivelSchema.create({
+        Guild: guild.id,
+        User: author.id,
+        XP: 0,
+        Level: 0
+      })
+    }
+  })
+
+  const channel = message.channel;
+  
+  const give = 1;
+  
+  const data = await nivelSchema.findOne({ Guild: guild.id, User: author.id});
+
+  if(!data) return;
+
+  const requiredXP = data.Level * data.Level * 20 + 20;
+
+  if (data.XP + give >= requiredXP) {
+
+    data.XP += give;
+    data.Level += 1;
+    await data.save()
+    
+    if(!channel) return;
+
+    const embed = new EmbedBuilder()
+    .setColor(client.config.prefix)
+    .setDescription(`${author}, Haz subido de nivel a nivel ${data.Level}!`)
+
+    channel.send({ embeds: [embed] });
+  } else {
+    data.XP += give;
+    data.save()
+  }
+})
