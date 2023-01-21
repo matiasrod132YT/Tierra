@@ -3,7 +3,7 @@ const {model, Schema} = require('mongoose')
 let cuentaSchema = new Schema({
     Guild: String,
     User: String,
-    Rank: Number,
+    Bank: Number,
     Wallet: Number
 })
 
