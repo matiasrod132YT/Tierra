@@ -42,10 +42,6 @@ module.exports = {
         .setDescription(`No tienes dinero en tu cuenta para retirarlo a tu billetera`)
         .setColor(client.config.prefix)
 
-        const embed6 = new EmbedBuilder()
-        .setDescription(`Se a retirado con exito $${perseInt(Converted)} de tu cuenta`)
-        .setColor(client.config.prefix)
-
         let Data = await cuentaSchema.findOne({ Guild: interaction.guild.id, User: user.id }).catch(err => { })
         if (!Data) return interaction.reply({ embeds: [embed], ephemeral: true }),
             setTimeout(function(){interaction.deleteReply({ embeds: [embed] })}, 5000)
@@ -64,18 +60,23 @@ module.exports = {
         } else {
             const Converted = Number(retirar)
 
-            if (isNaN(Converted) === true) return interaction.reply({ embeds: [embed4], ephemeral: true}),
+            if (isNaN(Converted) === true) return interaction.reply({ embeds: [embed4], ephemeral: true }),
                 setTimeout(function(){interaction.deleteReply({ embeds: [embed4] })}, 5000)
-            if (Data.Bank < perseInt(Converted) || Infinity) return interaction.reply({ embeds: [embed5]})
+            if (Data.Bank < parseInt(Converted) || Converted === Infinity) return interaction.reply({ embeds: [embed5], ephemeral: true }),
                 setTimeout(function(){interaction.deleteReply({ embeds: [embed5] })}, 5000)
 
-            Data.Wallet += perseInt(Converted)
-            Data.Bank -= perseInt(Converted)
+            Data.Wallet += parseInt(Converted)
+            Data.Bank -= parseInt(Converted)
             Data.Bank = Math.abs(Data.Bank)
 
             await Data.save()
 
-            return interaction.reply({ embeds: [embed6]})
+            const embed6 = new EmbedBuilder()
+            .setDescription(`Se a retirado con exito $${parseInt(Converted)} de tu cuenta`)
+            .setColor(client.config.prefix)
+
+            return interaction.reply({ embeds: [embed6], ephemeral: true}),
+                setTimeout(function(){interaction.deleteReply({ embeds: [embed5] })}, 5000)
         }
     }
 }

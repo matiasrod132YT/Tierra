@@ -40,9 +40,8 @@ module.exports = {
 
       switch(options.getString("opciones")) {
         case "crear": {
-          if(Data) {return interaction.reply({ embeds: [embed2], ephemeral: true }),
+          if (Data) return interaction.reply({ embeds: [embed2], ephemeral: true }),
             setTimeout(function(){interaction.deleteReply({ embeds: [embed2] })}, 5000)
-          };
 
           Data = new cuentaSchema({
             Guild: interaction.guild.id,
@@ -59,17 +58,16 @@ module.exports = {
           .setColor(client.config.prefix)
 
           interaction.reply({ embeds: [embed3], ephemeral: true })
-           setTimeout(function(){interaction.deleteReply({ embeds: [embed3] })}, 5000);
+            setTimeout(function(){interaction.deleteReply({ embeds: [embed3] })}, 5000);
         }
         break;
         case "dinero": {
-          if (!Data) {return interaction.reply({ embeds: [embed4], ephemeral: true }),
-          setTimeout(function(){interaction.deleteReply({ embeds: [embed4] })}, 5000)
-        };
+          if (!Data) return interaction.reply({ embeds: [embed4], ephemeral: true }),
+            setTimeout(function(){interaction.deleteReply({ embeds: [embed4] })}, 5000)
 
           const embed = new EmbedBuilder()
           .setTitle(`Banco de ${interaction.guild.name}`)
-          .setDescription(`**Banco:** $${Data.Bank}\n**Billetera:** $${Data.Wallet}\n**Total:** $${Data.Bank + Data.Wallet}`)
+          .setDescription(`**Usuario:** ${user}\n\n**Banco:** $${Data.Bank}\n**Billetera:** $${Data.Wallet}\n\n**Total:** $${Data.Bank + Data.Wallet}`)
           .setColor(client.config.prefix)
 
           await interaction.reply({ embeds: [embed] })
@@ -77,13 +75,13 @@ module.exports = {
         break;
         
         case "eliminar": {
-          if (!Data) return interaction.reply({ embeds: [embed4], ephemeral: true })
-          setTimeout(function(){interaction.deleteReply({ embeds: [embed4] })}, 5000)
+          if (!Data) return interaction.reply({ embeds: [embed4], ephemeral: true }),
+            setTimeout(function(){interaction.deleteReply({ embeds: [embed4] })}, 5000)
 
           await Data.delete()
 
           interaction.reply({ embeds: [embed5], ephemeral: true})
-          setTimeout(function(){interaction.deleteReply({ embeds: [embed4] })}, 5000)
+          setTimeout(function(){interaction.deleteReply({ embeds: [embed5] })}, 5000)
         }
 
         break;

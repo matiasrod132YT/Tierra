@@ -7,7 +7,7 @@ module.exports = {
     .setDescription(`Deposita dinero a tu cuenta`)
     .addStringOption(option =>
       option
-        .setName("retirar")
+        .setName("depositar")
         .setDescription("¿Cuanto dinero quieres depositar?")
         .setRequired(true)
     ),
@@ -15,7 +15,7 @@ module.exports = {
     async execute(interaction, client) {
         const { options, user, guild } = interaction;
 
-        const retirar = options.getString("retirar")
+        const depositar = options.getString("depositar")
 
         const embed = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
@@ -42,15 +42,11 @@ module.exports = {
         .setDescription(`No tienes dinero en tu billetera para depositarlo`)
         .setColor(client.config.prefix)
 
-        const embed6 = new EmbedBuilder()
-        .setDescription(`Se a depositado con exito $${perseInt(Converted)} a tu cuenta`)
-        .setColor(client.config.prefix)
-
         let Data = await cuentaSchema.findOne({ Guild: interaction.guild.id, User: user.id }).catch(err => { })
         if (!Data) return interaction.reply({ embeds: [embed], ephemeral: true }),
             setTimeout(function(){interaction.deleteReply({ embeds: [embed] })}, 5000)
 
-        if(retirar.toLowerCase() === "todo") {
+        if(depositar.toLowerCase() === "todo") {
             if (Data.Wallet == 0) return interaction.reply({ embeds: [embed2], ephemeral: true }),
                 setTimeout(function(){interaction.deleteReply({ embeds: [embed2] })}, 5000)
 
@@ -62,18 +58,22 @@ module.exports = {
             return interaction.reply({ embeds: [embed3], ephemeral: true }),
                 setTimeout(function(){interaction.deleteReply({ embeds: [embed3] })}, 5000)
         } else {
-            const Converted = Number(retirar)
+            const Converted = Number(depositar)
 
             if (isNaN(Converted) === true) return interaction.reply({ embeds: [embed4], ephemeral: true}),
                 setTimeout(function(){interaction.deleteReply({ embeds: [embed4] })}, 5000)
-            if (Data.Wallet < perseInt(Converted) || Infinity) return interaction.reply({ embeds: [embed5]})
+            if (Data.Wallet < parseInt(Converted) || Converted === Infinity) return interaction.reply({ embeds: [embed5]})
                 setTimeout(function(){interaction.deleteReply({ embeds: [embed5] })}, 5000)
 
-            Data.Bank += perseInt(Converted)
-            Data.Wallet -= perseInt(Converted)
-            Data.Wallet = Math.abs(Data.Bank)
+            Data.Bank += parseInt(Converted)
+            Data.Wallet -= parseInt(Converted)
+            Data.Wallet = Math.abs(Data.Wallet)
 
             await Data.save()
+
+            const embed6 = new EmbedBuilder()
+            .setDescription(`Se a depositado con exito $${parseInt(Converted)} a tu cuenta`)
+            .setColor(client.config.prefix)
 
             return interaction.reply({ embeds: [embed6]})
         }
