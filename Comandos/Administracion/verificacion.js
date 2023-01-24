@@ -56,7 +56,7 @@ module.exports = {
         .setColor(client.config.prefix)
 
         interaction.channel.send({ embeds: [embed], components: [boton] });
-        await usuario.send({ embeds: [embed3] }).catch(err => {return});
+        await interaction.user.send({ embeds: [embed3] }).catch(err => {return});
 
         interaction.reply({ embeds: [embed2], ephemeral: true})
         setTimeout(function(){interaction.deleteReply({ embeds: [embed2] })}, 5000);

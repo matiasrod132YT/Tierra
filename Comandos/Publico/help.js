@@ -37,12 +37,6 @@ const {
           .setCustomId(`pag4`)
           .setLabel(`Diversion`)
           .setEmoji(`🔮`)
-          .setStyle(ButtonStyle.Primary),
-
-        new ButtonBuilder()
-          .setCustomId(`pag5`)
-          .setLabel(`Musica`)
-          .setEmoji(`🎼`)
           .setStyle(ButtonStyle.Primary)
       );
   
@@ -99,7 +93,15 @@ const {
           {
             name: `/user`,
             value: `Te mostrare tu informacion o la de algun usuario`,
-          }
+          },
+          {
+            name: `/musica`,
+            value: `Sistema de musica completo`,
+          },
+          {
+            name: `/convertidor-id`,
+            value: `Convierte cualquier id a su fecha de creacion`,
+          },
         )
         .setColor(client.config.prefix)
   
@@ -170,6 +172,22 @@ const {
             name: `/verificacion`,
             value: `Crea un sistema de verificacion`,
           },
+          {
+            name: `/cerrar`,
+            value: `Cierra un canal`,
+          },
+          {
+            name: `/abrir`,
+            value: `Abre un canal`,
+          },
+          {
+            name: `/añadir`,
+            value: `Añade dinero a un usuario`
+          },
+          {
+            name: `/quitar`,
+            value: `Quita dinero a un usuario`
+          },
         )
         .setColor(client.config.prefix)
 
@@ -224,27 +242,29 @@ const {
             name: `/tweet`,
             value: `Twittea algo en Twitter`
           },
-        )
-        .setColor(client.config.prefix)
-
-      const embed5 = new EmbedBuilder()
-        .setTitle(`🎼 | Comandos de Musica`)
-        .addFields(
           {
-            name: `/musica play`,
-            value: `Pon una cancion`,
+            name: `/depositar`,
+            value: `Deposita dinero en tu cuenta`
           },
           {
-            name: `/musica volumen`,
-            value: `Ajusta el volumen`,
+            name: `/economia`,
+            value: `Opciones de tu cuenta`
           },
           {
-            name: `/musica cancion`,
-            value: `Pon una cancion por medio de un link de YT`,
+            name: `/pagar`,
+            value: `Paga dinero a un usuario`
           },
           {
-            name: `/musica opciones`,
-            value: `Configura el sistema de musica`,
+            name: `/retirar`,
+            value: `Retira dinero de tu cuenta`
+          },
+          {
+            name: `/trabajar`,
+            value: `Trabaja para ganar dinero`
+          },
+          {
+            name: `/robar`,
+            value: `Roba dinero a alguien`
           }
         )
         .setColor(client.config.prefix)
@@ -292,16 +312,6 @@ const {
             });
           }
           await i.update({ embeds: [embed4], components: [button] });
-        }
-
-        if (i.customId === `pag5`) {
-          if (i.user.id !== interaction.user.id) {
-            return await i.reply({
-              content: `Solo la persona que ejecuto el comando puede utilizar los botones!`,
-              ephemeral: true,
-            });
-          }
-          await i.update({ embeds: [embed5], components: [button] });
         }
       });
     },
