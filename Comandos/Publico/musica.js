@@ -32,17 +32,18 @@ module.exports = {
     .addSubcommand((subcommand) => subcommand
       .setName("opciones")
       .setDescription("Configura el sistema de Musica")
-      .addStringOption((option) => option
-        .setName("accion")
-        .setDescription("Accion")
-        .addChoices(
-          { name: "pausa", value: "pausa" },
-          { name: "resume", value: "resume" },
-          { name: "skip", value: "skip" },
-          { name: "queue", value: "queue" },
-          { name: "exit", value: "exit" }
-        )
-        .setRequired(true)
+      .addStringOption(option =>
+        option
+          .setName("accion")
+          .setDescription("Accion")
+          .addChoices(
+            { name: "pausa", value: "pausa" },
+            { name: "renaudar", value: "renaudar" },
+            { name: "skip", value: "skip" },
+            { name: "queue", value: "queue" },
+            { name: "exit", value: "exit" }
+          )
+          .setRequired(true)
       )
     )
     .addSubcommand((subcommand) => subcommand
@@ -57,6 +58,7 @@ module.exports = {
       )
     ),
     async execute(interaction, client) {
+      const { options } = interaction;
       if (interaction.options.getSubcommand() === 'play') {
         // Make sure the user is inside a voice channel
         if (!interaction.member.voice.channel)
@@ -148,7 +150,7 @@ module.exports = {
         // Search for the song using the discord-player
         const result = await client.player.search(url, {
           requestedBy: interaction.user,
-          searchEngine: QueryType.YOUTUBE_VIDEO,
+          searchEngine: QueryType.SPOTIFY_SONG,
         });
         // finish if no tracks were found
         if (result.tracks.length === 0)
@@ -170,142 +172,146 @@ module.exports = {
         // Play the song
         if (!queue.playing) await queue.play();
       }
-      if (interaction.options.getSubcommand() === 'opciones') {
-          var { guild, options, getChoice } = interaction;
-          // Get the current queue
-          var queue = client.player.getQueue(guild);
-          if (pausa) {
-            if (!interaction.member.voice.channel)
-              return interaction.reply({
-                content: "**:x: | Necesitas estar en un Canal de Voz**",
-                ephemeral: true,
-              });
-            // Check if the queue is empty
-            if (!queue) {
-              await interaction.reply({
-                content: "**No hay una cancion reproduciéndose**",
-                ephemeral: true,
-              });
-              return;
-            }
-      
-            // Pause the current song
-            queue.setPaused(true);
-      
-            await interaction.reply({ content: "**La cancion fue pausada!**", ephemeral: true });
-          }
-            if (renaudar) {
-              if (!interaction.member.voice.channel)
-                return interaction.reply({
-                  content: "**:x: | Necesitas estar en un Canal de Voz**",
-                  ephemeral: true,
-                });
-              // Check if the queue is empty
-              if (!queue) {
-                await interaction.reply({
-                  content: "**No hay canciones en la cola**",
-                  ephemeral: true,
-                });
-                return;
-              }
-        
-              // Pause the current song
-              queue.setPaused(false);
-        
-              await interaction.reply({
-                content: "**La cancion fue reanudada**",
-                ephemeral: true,
-              });
-          }
-          if (action == "skip") {
-            if (!interaction.member.voice.channel)
-              return interaction.reply({
-                content: "**:x: | Necesitas estar en un Canal de Voz**",
-                ephemeral: true,
-              });
-            // If there is no queue, return
-            if (!queue) {
-              await interaction.reply({
-                content: "**No hay canciones en la cola**",
-                ephemeral: true,
-              });
-              return;
-            }
-      
-            const currentSong = queue.current;
-      
-            // Skip the current song
-            queue.skip(currentSong);
-      
-            // Return an embed to the user saying the song has been skipped
-      
-            const embed = new EmbedBuilder()
-              .setDescription(`${currentSong.title} fue skipeada!`)
-              .setThumbnail(currentSong.thumbnail)
-              .setColor(client.config.prefix);
-            interaction.reply({ embeds: [embed] });
-          }
-          if (action == "queue") {
-            if (!interaction.member.voice.channel)
-              return interaction.reply({
-                content: "**:x: | Necesitas estar en un Canal de Voz**",
-                ephemeral: true,
-              });
-            // check if there are songs in the queue
-            if (!queue || !queue.playing) {
-              await interaction.reply({
-                content: "**No hay canciones en la cola**",
-                ephemeral: true,
-              });
-              return;
-            }
-      
-            // Get the first 10 songs in the queue
-            const queueString = queue.tracks
-              .slice(0, 10)
-              .map((song) => {
-                return `\`[${song.duration}]\` ${song.title} - <@${song.requestedBy.id}>`;
-              })
-              .join("\n");
-      
-            // Get the current song
-            const currentSong = queue.current;
-      
-            const embed = new EmbedBuilder()
-              .setDescription(
-                `**Reproduciendo**\n` +
-                  (currentSong
-                    ? `\`[${currentSong.duration}]\` ${currentSong.title} - <@${currentSong.requestedBy.id}>`
-                    : "None") +
-                  `\n\n**Queue**\n${queueString}`
-              )
-              .setThumbnail(currentSong.setThumbnail)
-              .setColor(client.config.prefix);
-      
-            interaction.reply({ embeds: [embed] });
-          }
-          if (action == "salir") {
-            if (!interaction.member.voice.channel)
-              return interaction.reply({
-                content: "**:x: | Necesitas estar en un Canal de Voz**",
-                ephemeral: true,
-              });
-            if (!queue) {
-              await interaction.reply({
-                content: "**No hay una canción sonando**",
-                ephemeral: true,
-              });
-              return;
-            }
-      
-            // Deletes all the songs from the queue and exits the channel
-            queue.destroy();
-      
-            await interaction.reply({
-              content: "**Dejó de reproducir la canción**",
+      var queue = client.player.getQueue(interaction.guild);
+      switch(options.getString("accion")) {
+        case "pausa": {
+          if (!interaction.member.voice.channel)
+            return interaction.reply({
+              content: "**:x: | Necesitas estar en un Canal de Voz**",
               ephemeral: true,
             });
+          // Check if the queue is empty
+          if (!queue) {
+            await interaction.reply({
+              content: "**No hay una cancion reproduciéndose**",
+              ephemeral: true,
+            });
+            return;
           }
+    
+          // Pause the current song
+          queue.setPaused(true);
+    
+          await interaction.reply({ content: "**La cancion fue pausada!**", ephemeral: true });
         }
+        break;
+        case "renaudar": {
+          if (!interaction.member.voice.channel)
+            return interaction.reply({
+              content: "**:x: | Necesitas estar en un Canal de Voz**",
+              ephemeral: true,
+            });
+          // Check if the queue is empty
+          if (!queue) {
+            await interaction.reply({
+              content: "**No hay canciones en la cola**",
+              ephemeral: true,
+            });
+            return;
+          }
+    
+          // Pause the current song
+          queue.setPaused(false);
+    
+          await interaction.reply({
+            content: "**La cancion fue reanudada**",
+            ephemeral: true,
+          });
+        }
+        break;
+        case "skip": {
+          if (!interaction.member.voice.channel)
+            return interaction.reply({
+              content: "**:x: | Necesitas estar en un Canal de Voz**",
+              ephemeral: true,
+            });
+          // If there is no queue, return
+          if (!queue) {
+            await interaction.reply({
+              content: "**No hay canciones en la cola**",
+              ephemeral: true,
+            });
+            return;
+          }
+    
+          const currentSong = queue.current;
+    
+          // Skip the current song
+          queue.skip(currentSong);
+          queue.play.nextSong;
+    
+          // Return an embed to the user saying the song has been skipped
+    
+          const embed = new EmbedBuilder()
+            .setDescription(`${currentSong.title} fue skipeada!`)
+            .setThumbnail(currentSong.thumbnail)
+            .setColor(client.config.prefix);
+          interaction.reply({ embeds: [embed] });
+        }
+        break;
+        case "queue": {
+          if (!interaction.member.voice.channel)
+            return interaction.reply({
+              content: "**:x: | Necesitas estar en un Canal de Voz**",
+              ephemeral: true,
+            });
+          // check if there are songs in the queue
+          if (!queue || !queue.playing) {
+            await interaction.reply({
+              content: "**No hay canciones en la cola**",
+              ephemeral: true,
+            });
+            return;
+          }
+    
+          // Get the first 10 songs in the queue
+          const queueString = queue.tracks
+            .slice(0, 10)
+            .map((song) => {
+              return `\`[${song.duration}]\` ${song.title} - <@${song.requestedBy.id}>`;
+            })
+            .join("\n");
+    
+          // Get the current song
+          const currentSong = queue.current;
+    
+          const embed = new EmbedBuilder()
+            .setDescription(
+              `**Reproduciendo**\n` +
+                (currentSong
+                  ? `\`[${currentSong.duration}]\` ${currentSong.title} - <@${currentSong.requestedBy.id}>`
+                  : "None") +
+                `\n\n**Queue**\n${queueString}`
+            )
+            .setThumbnail(currentSong.setThumbnail)
+            .setColor(client.config.prefix);
+    
+          interaction.reply({ embeds: [embed] });
+        }
+        break;
+        case "salir": {
+          if (!interaction.member.voice.channel)
+            return interaction.reply({
+              content: "**:x: | Necesitas estar en un Canal de Voz**",
+              ephemeral: true,
+            });
+          if (!queue) {
+            await interaction.reply({
+              content: "**No hay una canción sonando**",
+              ephemeral: true,
+            });
+            return;
+          }
+    
+          // Deletes all the songs from the queue and exits the channel
+          queue.destroy();
+    
+          await interaction.reply({
+            content: "**Dejó de reproducir la canción**",
+            ephemeral: true,
+          });
+        }
+        break;
       }
-};
+    }
+}
