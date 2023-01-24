@@ -66,6 +66,7 @@ module.exports = {
             setTimeout(function(){interaction.deleteReply({ embeds: [embed4] })}, 5000)
 
           const embed = new EmbedBuilder()
+          .setAuthor({ name: `${interaction.user.tag}`, iconURL: `${interaction.user.displayAvatarURL({dynamic: true})}` })
           .setTitle(`Banco de ${interaction.guild.name}`)
           .setDescription(`**Usuario:** ${user}\n\n**Banco:** $${Data.Bank}\n**Billetera:** $${Data.Wallet}\n\n**Total:** $${Data.Bank + Data.Wallet}`)
           .setColor(client.config.prefix)
