@@ -43,8 +43,8 @@ module.exports = {
                 setTimeout(function(){interaction.deleteReply({ embeds: [embed3] })}, 5000)
             }
 
-            Data.Wallet + Datas.Wallet
-            Data.Wallet = 0
+            Data.Wallet += Datas.Wallet
+            
             await Datas.save()
             await Data.save()
     
