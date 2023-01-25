@@ -1,5 +1,5 @@
 const { Client, Message } = require("discord.js");
-const guessthenumber = require("../../../schemas/numero/adivinaNumeroSchema");
+const guessthenumber = require("../../../schemas/adivina-numero/adivinaNumeroSchema");
 
 module.exports = {
   name: "messageCreate",

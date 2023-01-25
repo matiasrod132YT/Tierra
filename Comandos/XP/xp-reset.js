@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder, PermissionsBitField } = require(`discord.js`);
 const nivelSchema = require(`../../schemas/nivel/nivel`);
+const nivelStatusSchema = require('../../schemas/nivel/nivelStatus');
 const Canvacord = require('canvacord');
 
 module.exports = {
@@ -18,7 +19,15 @@ module.exports = {
 
         const { guildId } = interaction;
 
+        const nivelstatus = await nivelStatusSchema.findOne({ GuildID: guild.id })
+
         const target = interaction.options.getUser(`usuario`);
+
+        const embed = new EmbedBuilder()
+        .setColor(client.config.prefix)
+        .setDescription(`**El sistema de niveles esta desactivado en este servidor**`)
+
+        if(!nivelstatus.status) return await interaction.reply({ embeds: [embed], ephemeral: true });
 
         nivelSchema.deleteMany({ Guild: guildId, User: target.id}, async (err, data) => {
             

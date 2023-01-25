@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder, PermissionsBitField } = require(`discord.js`);
 const nivelSchema = require(`../../schemas/nivel/nivel`);
+const nivelStatusSchema = require('../../schemas/nivel/nivelStatus');
 const Canvacord = require('canvacord');
 
 module.exports = {
@@ -9,11 +10,17 @@ module.exports = {
     async execute(interaction, client) {
         const { guild } = interaction;
 
+        const nivelstatus = await nivelStatusSchema.findOne({ GuildID: guild.id })
+
         let text = "";
         
         const embed1 = new EmbedBuilder()
         .setColor(client.config.prefix)
         .setDescription(`**Todavia nadie esta en el TOP XP**`)
+
+        const embed2 = new EmbedBuilder()
+        .setColor(client.config.prefix)
+        .setDescription(`**El sistema de niveles esta desactivado en este servidor**`)
 
         const Data = await nivelSchema.find({ Guild: guild.id})
             .sort({
@@ -23,6 +30,8 @@ module.exports = {
             .limit(10)
             
         if (!Data) return await interaction.reply({ embeds: [embed1] });
+
+        if(!nivelstatus.status) return await interaction.reply({ embeds: [embed2], ephemeral: true });
 
         await interaction.deferReply();
 

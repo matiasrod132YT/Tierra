@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require(`discord.js`);
 const nivelSchema = require(`../../schemas/nivel/nivel`);
+const nivelStatusSchema = require('../../schemas/nivel/nivelStatus');
 const Canvacord = require('canvacord');
 
 module.exports = {
@@ -17,7 +18,9 @@ module.exports = {
 
         const Member = options.getMember(`usuario`) || user;
 
-        const member = guild.members.cache.get(Member.id); 
+        const member = guild.members.cache.get(Member.id);
+
+        const nivelstatus = await nivelStatusSchema.findOne({ GuildID: guild.id })
 
         const Data = await nivelSchema.findOne({ Guild: guild.id, User: member.id});
 
@@ -25,7 +28,13 @@ module.exports = {
         .setColor(client.config.prefix)
         .setDescription(`**${member} todavia no tiene XP**`)
 
+        const embed3 = new EmbedBuilder()
+        .setColor(client.config.prefix)
+        .setDescription(`**El sistema de niveles esta desactivado en este servidor**`)
+
         if(!Data) return await interaction.reply({ embeds: [embed] });
+
+        if(!nivelstatus.status) return await interaction.reply({ embeds: [embed3], ephemeral: true });
 
         await interaction.deferReply();
 

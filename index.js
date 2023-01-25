@@ -76,9 +76,14 @@ process.on("unhandledRejection", (razon, p) => {
 });
 
 const nivelSchema = require("./schemas/nivel/nivel");
+const nivelStatusSchema = require("./schemas/nivel/nivelStatus");
 client.on(Events.MessageCreate, async (message) => {
   
   const { guild, author } = message;
+
+  const nivelstatus = await nivelStatusSchema.findOne({ GuildID: guild.id })
+
+  if(!nivelstatus.status) return;
   
   if(!guild || author.bot) return;
 
@@ -90,7 +95,8 @@ client.on(Events.MessageCreate, async (message) => {
         Guild: guild.id,
         User: author.id,
         XP: 0,
-        Level: 0
+        Level: 0,
+        Status: false,
       })
     }
   })
@@ -102,6 +108,10 @@ client.on(Events.MessageCreate, async (message) => {
   const data = await nivelSchema.findOne({ Guild: guild.id, User: author.id});
 
   if(!data) return;
+
+  const features = await nivelStatusSchema.findOne({ GuildID: guild.id })
+
+  if (features.Leveling === false) return;
 
   const requiredXP = data.Level * data.Level * 20 + 20;
 

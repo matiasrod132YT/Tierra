@@ -1,6 +1,6 @@
 const { model, Schema } = require("mongoose")
 
-module.exports = model("guessthenumber", new Schema({
+module.exports = model("adivina-numero", new Schema({
     
     Guild: String,
     Channel: String,
