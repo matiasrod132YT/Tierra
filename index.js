@@ -83,6 +83,13 @@ client.on(Events.MessageCreate, async (message) => {
 
   const nivelstatus = await nivelStatusSchema.findOne({ GuildID: guild.id })
 
+  if(!nivelstatus) {
+    nivelStatusSchema.create({
+      GuildID: guild.id,
+      Leveling: false
+    })
+}
+
   if(!nivelstatus.status) return;
   
   if(!guild || author.bot) return;
