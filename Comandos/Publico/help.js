@@ -188,6 +188,14 @@ const {
             name: `/quitar`,
             value: `Quita dinero a un usuario`
           },
+          {
+            name: `/pegajoso`,
+            value: `Crea un mensaje pegajoso`,
+          },
+          {
+            name: `/despegajoso`,
+            value: `Elimina un mensaje pegajoso`,
+          }
         )
         .setColor(client.config.prefix)
 

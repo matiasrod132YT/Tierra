@@ -36,6 +36,7 @@
     "randomized-string": "^1.2.7",
     "schema": "^0.2.1",
     "string-similarity": "^4.0.4",
+    "tictactoe": "^0.1.0",
     "util": "^0.12.5"
   },
   "name": "tierra",

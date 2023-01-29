@@ -10,7 +10,7 @@ const {
 const nivelStatusSchema = require('../../schemas/nivel/nivelStatus')
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("setlevelstatus")
+        .setName("setup-nivel")
         .setDescription("Set the status of the level system")
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
         
@@ -67,7 +67,7 @@ module.exports = {
 
             if (ds.customId === `true`) {
                 const e = new EmbedBuilder()
-                .setDescription(`📗 El Sistema de AntiLink esta **Activado**`)
+                .setDescription(`📗 El Sistema de niveles esta **Activado**`)
                 .setColor(client.config.prefix)
 
                 ds.update({ embeds: [e], components: [] });
@@ -82,7 +82,7 @@ module.exports = {
 
             } else if (ds.customId === `false`) {
                 const e = new EmbedBuilder()
-                .setDescription(`📕 El Sistema de AntiLink esta **Desactivado**`)
+                .setDescription(`📕 El Sistema de niveles esta **Desactivado**`)
                 .setColor(client.config.prefix)
 
                 ds.update({ embeds: [e], components: [] });
