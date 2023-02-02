@@ -79,6 +79,10 @@ const {
             value: `Muesta el ping del bot`,
           },
           {
+            name: `/prendido`,
+            value: `Muestra cuanto tiempo a estado prendido`,
+          },
+          {
             name: `/review`,
             value: `Manda un review a el server o al bot`,
           },
@@ -88,7 +92,7 @@ const {
           },
           {
             name: `/sugerencia`,
-            value: `Muestra las invitaciones de un usuario`,
+            value: `Sugiere algo al servidor`,
           },
           {
             name: `/user`,
