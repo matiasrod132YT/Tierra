@@ -19,6 +19,7 @@ const client = new Client({
   intents: [Guilds, GuildMembers, GuildMessageReactions, GuildMessages, MessageContent, GuildVoiceStates],
   partials: [User, Message, GuildMember, ThreadMember],
 });
+module.exports = client;
 
 mongoose.connect("mongodb+srv://Matiasrod132:Wesersa12345@tierra.dhgdheq.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser: true,
