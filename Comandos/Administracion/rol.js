@@ -1,10 +1,8 @@
 const {
-    PermissionFlagsBits,
-    SlashCommandBuilder,
-    EmbedBuilder,
-    Embed,
-    MembershipScreeningFieldType,
-  } = require("discord.js");
+  PermissionFlagsBits,
+  SlashCommandBuilder,
+  EmbedBuilder,
+} = require("discord.js");
   
   module.exports = {
     data: new SlashCommandBuilder()
