@@ -67,7 +67,8 @@ module.exports = {
         datosenviados.Wallet -= datosenviados.Wallet
         datosenviados.save()
 
-        interaction.reply({ embeds: [embed5], ephemeral: true})
+        interaction.reply({ embeds: [embed5], ephemeral: true}),
+        interaction.setCooldown(5000)
 
     }
 }

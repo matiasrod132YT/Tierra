@@ -28,7 +28,8 @@ module.exports = {
             Data.Wallet += dinerotrabajado
             Data.save()
 
-            return interaction.reply({ embeds: [embed2]})
+            return interaction.reply({ embeds: [embed2]}),
+            interaction.setCooldown(5000)
             
         }
     }
