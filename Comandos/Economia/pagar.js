@@ -1,4 +1,4 @@
-const { Client, SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionFlagsBits } = require("discord.js");
 const cuentaSchema = require("../../schemas/Economia/cuenta");
 
 module.exports = {
@@ -42,9 +42,19 @@ module.exports = {
 
         const embed5 = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
-        .setDescription(`Le has pagado $${pagar} a ${Member}`)
+        .setDescription(`Has pagado \`\`$${pagar}\`\` a ${Member}`)
         .setColor(client.config.prefix)
 
+        const embed6 = new EmbedBuilder()
+        .setTitle(`💳 | Banco de ${interaction.guild.name}`)
+        .setDescription(`**Has recibido un pago**\n\n\`\`De: \`\`${user}\n\`\`Cantidad: $${pagar}\`\``)
+        .setColor(client.config.prefix)
+        
+        const embed8 = new EmbedBuilder()
+        .setTitle(`💳 | Banco de ${interaction.guild.name}`)
+        .setDescription(`Has cancelado el pago`)
+        .setColor(client.config.prefix)
+        
         let data = await cuentaSchema.findOne({ Guild: interaction.guild.id, User: user.id }).catch(err => { })
         if (!data) return interaction.reply({ embeds: [embed2], ephemeral: true })
 
@@ -74,21 +84,61 @@ module.exports = {
             return interaction.reply({ embeds: [embed4], ephemeral: true })
         }
 
-        const datosenviados = await cuentaSchema.findOne({
-            Guild: interaction.guild.id,
-            User: sender.id
+        const embed7 = new EmbedBuilder()
+        .setTitle(`💳 | Banco de ${interaction.guild.name}`)
+        .setDescription(`**Confirmacion de pago**\n\n**Para: ${Member}**\n**De: ${sender}**\n**Cantidad: ${pagar}**\n\n**Para confirmar el pago dale al boton \`\`CONFIRMAR\`\` y para rechazar darle al boton \`\`RECHAZAR\`\`.**`)
+        .setColor(client.config.prefix)
+
+        const botones = new ActionRowBuilder()
+          .addComponents(
+            new ButtonBuilder()
+            .setCustomId('pagar-confirmar')
+            .setLabel('CONFIRMAR')
+            .setStyle(ButtonStyle.Success),
+
+            new ButtonBuilder()
+            .setCustomId('pagar-rechazar')
+            .setLabel('RECHAZAR')
+            .setStyle(ButtonStyle.Danger),
+        );
+
+        await interaction.reply({ embeds: [embed7], components: [botones], ephemeral: true })
+
+        const ifilter = i => i.user.id === interaction.user.id;
+        const collector = interaction.channel.createMessageComponentCollector({ filter: ifilter, time: 60000 })
+
+        collector.on('collect', async i => {
+            if(i.isButton()){
+            if(i.customId === "pagar-confirmar"){
+                await i.deferUpdate()
+                const datosenviados = await cuentaSchema.findOne({
+                    Guild: interaction.guild.id,
+                    User: sender.id
+                })
+                datosenviados.Bank -= pagar
+                datosenviados.save()
+
+                const datosrecividos = await cuentaSchema.findOne({
+                    Guild: interaction.guild.id,
+                    User: Member.id
+                })
+                datosrecividos.Bank += pagar
+                datosrecividos.save()
+
+                Member.send({ embeds: [embed6], ephemeral: true })
+               return interaction.channel.send({ embeds: [embed5], ephemeral: true })
+            }}
+            collector.stop()
         })
-        datosenviados.Bank -= pagar
-        datosenviados.save()
 
-        const datosrecividos = await cuentaSchema.findOne({
-            Guild: interaction.guild.id,
-            User: Member.id
+        collector.on('collect', async i => {
+            if(i.isButton()){
+            if(i.customId === "pagar-rechazar"){
+                await i.deferUpdate();
+                interaction.channel.send({ embeds: [embed8], ephemeral: true });
+            }
+            }
+            collector.stop()
         })
-        datosrecividos.Bank += pagar
-        datosrecividos.save()
-
-        interaction.reply({ embeds: [embed5], ephemeral: true})
-
     }
 }
