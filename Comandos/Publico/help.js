@@ -189,6 +189,10 @@ const {
             value: `Añade dinero a un usuario`
           },
           {
+            name: `/embed`,
+            value:`Crea un embed personalizado`
+          },
+          {
             name: `/quitar`,
             value: `Quita dinero a un usuario`
           },
