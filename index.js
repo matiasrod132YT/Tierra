@@ -8,6 +8,7 @@ const {
   EmbedBuilder,
 } = require("discord.js");
 const mongoose = require("mongoose");
+const discordModals = require("discord-modals");
 
 require("discord-player/smoothVolume");
 const { Player } = require("discord-player");
@@ -20,6 +21,7 @@ const client = new Client({
   partials: [User, Message, GuildMember, ThreadMember],
 });
 module.exports = client;
+discordModals(client);
 
 mongoose.connect("mongodb+srv://Matiasrod132:Wesersa12345@tierra.dhgdheq.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser: true,
