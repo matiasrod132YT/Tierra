@@ -31,7 +31,7 @@ const {
       const e2 = new EmbedBuilder()
         .setTitle(`🔗 AntiLink`)
         .setThumbnail(client.user.displayAvatarURL())
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setImage("https://share.creavite.co/QaATY9cbqa9ggxSy.gif")
         .setDescription(
           `AntiLink de **${guild.name}**\n\nEl sistema esta \`${sistema}\`.\n\n¡Usa los botones de abajo para configurar el AntiLink del servidor!`
@@ -66,7 +66,7 @@ const {
         if (ds.customId === `true`) {
           const e = new EmbedBuilder()
           .setDescription(`📗 El Sistema de AntiLink esta **Activado**`)
-          .setColor(client.config.prefix)
+          .setColor(client.config.color)
   
           ds.update({ embeds: [e], components: [] });
   
@@ -80,7 +80,7 @@ const {
         } else if (ds.customId === `false`) {
           const e = new EmbedBuilder()
           .setDescription(`📕 El Sistema de AntiLink esta **Desactivado**`)
-          .setColor(client.config.prefix)
+          .setColor(client.config.color)
   
           ds.update({ embeds: [e], components: [] });
   

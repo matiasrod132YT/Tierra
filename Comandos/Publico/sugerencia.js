@@ -14,28 +14,28 @@ module.exports = {
     ),
 
     async execute(interaction, client) {
-      const { options, guildId, member, user, guild } = interaction;
+      const { options, guildId } = interaction;
 
       const sugerencia = options.getString("sugerencia");
 
       const embed = new EmbedBuilder()
-        .setAuthor({ name: `Sugerencia de ${interaction.user.tag}`, iconURL: `${interaction.user.displayAvatarURL({dynamic: true})}`})
-        .addFields(
-            {name: 'Sugerencia:', value: sugerencia, inline: false},
-            {name: 'Estatus:', value: 'Pendiente...', inline: false},
-        )
-        .setTimestamp()
-        .setColor(client.config.prefix)
+      .setAuthor({ name: `Sugerencia de ${interaction.user.tag}`, iconURL: `${interaction.user.displayAvatarURL({dynamic: true})}`})
+      .addFields(
+          {name: 'Sugerencia:', value: sugerencia, inline: false},
+          {name: 'Estatus:', value: 'Pendiente...', inline: false},
+      )
+      .setTimestamp()
+      .setColor(client.config.color)
 
       const errEmbed = new EmbedBuilder()
-      .setColor(client.config.prefix)
-        .setDescription("¡Las sugerencias no están configuradas en el servidor!")
+      .setColor(client.config.color)
+      .setDescription("¡Las sugerencias no están configuradas en el servidor!")
 
       const embed2 = new EmbedBuilder()
-      .setColor(client.config.prefix)
-        .setDescription('¡Se envió con éxito la sugerencia!')
+      .setColor(client.config.color)
+      .setDescription('¡Se envió con éxito la sugerencia!')
 
-      sugerenciaSetup.findOne({GuildId: interaction.guild.id}, async (err, data) => {
+      sugerenciaSetup.findOne({GuildId: guildId}, async (err, data) => {
             if (err) throw err;
 
             if (!data) {

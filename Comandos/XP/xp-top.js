@@ -15,11 +15,11 @@ module.exports = {
         let text = "";
         
         const embed1 = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setDescription(`**Todavia nadie esta en el TOP XP**`)
 
         const embed2 = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setDescription(`**El sistema de niveles esta desactivado en este servidor**`)
 
         const Data = await nivelSchema.find({ Guild: guild.id})
@@ -45,7 +45,7 @@ module.exports = {
             text += `${counter + 1}. ${member} | XP: ${XP} | Nivel: ${Level} \n`
 
             const embed = new EmbedBuilder()
-            .setColor(client.config.prefix)
+            .setColor(client.config.color)
             .setTitle(`TOP XP de ${interaction.guild.name}`)
             .setDescription(`\`\`\`${text}\`\`\``)
             .setTimestamp()

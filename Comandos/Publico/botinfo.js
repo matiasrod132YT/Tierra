@@ -52,7 +52,7 @@ module.exports = {
                         inline: true
                     }
                 )
-                .setColor(client.config.prefix)
+                .setColor(client.config.color)
             interaction.reply({ embeds: [embed]});
     }
 };

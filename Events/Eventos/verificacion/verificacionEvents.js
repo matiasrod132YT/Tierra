@@ -27,7 +27,7 @@ const {
         const embed = new EmbedBuilder()
         .setTitle(`🔒 | Verificacion`)
         .setDescription(`¡Bienvenido ${interaction.user.name} al servidor! Haz click al boton "Verificar" para verificarte en el servidor.`)
-        .setColor("#FF3939")
+        .setColor(client.config.color)
 
         const boton = new ActionRowBuilder()
         .addComponents(
@@ -41,7 +41,7 @@ const {
         const embed2 = new EmbedBuilder()
         .setTitle(`🔒 | Verificacion`)
         .setDescription(`Haz sido verificado en el servidor **${interaction.guild.name}** con el rol de **${rol.name}**`)
-        .setColor("#FF3939")
+        .setColor(client.config.color)
 
         if (interaction.isButton) {
         const { channel, member, guild, customId } = interaction;

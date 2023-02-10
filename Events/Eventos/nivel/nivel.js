@@ -58,8 +58,8 @@ module.exports = {
             if(!channel) return;
 
             const embed = new EmbedBuilder()
-            .setColor(client.config.prefix)
             .setDescription(`${author}, Haz subido de nivel a nivel ${data.Level}!`)
+            .setColor(client.config.color)
 
             channel.send({ embeds: [embed] });
         } else {

@@ -9,14 +9,14 @@ module.exports = {
     .setDescription(`Resetea el XP del servidor`)
     .setDefaultMemberPermissions(PermissionsBitField.Administrator),
     async execute(interaction, client) {
-        const { options, user, guild } = interaction;
+        const { guild } = interaction;
 
         const nivelstatus = await nivelStatusSchema.findOne({ GuildID: guild.id })
 
         const { guildId } = interaction;
 
         const embed = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setDescription(`**El sistema de niveles esta desactivado en este servidor**`)
 
         if(!nivelstatus.status) return await interaction.reply({ embeds: [embed], ephemeral: true });
@@ -24,7 +24,7 @@ module.exports = {
         nivelSchema.deleteMany({ Guild: guildId,}, async (err, data) => {
             
             const embed = new EmbedBuilder()
-            .setColor(client.config.prefix)
+            .setColor(client.config.color)
             .setDescription(`**El nivel de XP del servidor fue reseteado correctamente**`)
 
             await interaction.reply({ embeds: [embed], ephemeral: true })

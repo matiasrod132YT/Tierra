@@ -14,7 +14,7 @@ module.exports = {
                 const errembed = new EmbedBuilder()
                 .setTitle(`⚒ | Sistema de Reportes`)
                 .setDescription(`El sistema de reportes no esta habilitado en este servidor`)
-                .setColor(client.config.prefix)
+                .setColor(client.config.color)
 
                 return await interaction.reply({ embeds: [errembed], ephemeral: true })
             }

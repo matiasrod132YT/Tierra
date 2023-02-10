@@ -49,7 +49,7 @@ const {
           value: `\`/\``,
         }, 
       )
-      .setColor(client.config.prefix)
+      .setColor(client.config.color)
   
       const embed2 = new EmbedBuilder()
         .setTitle(`🔰 | Comandos de utilidad`)
@@ -107,7 +107,7 @@ const {
             value: `Convierte cualquier id a su fecha de creacion`,
           },
         )
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
   
       const embed3 = new EmbedBuilder()
         .setTitle(`🛠 | Comandos de Moderacion`)
@@ -205,7 +205,7 @@ const {
             value: `Elimina un mensaje pegajoso`,
           }
         )
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
       const embed4 = new EmbedBuilder()
         .setTitle(`🔮 | Comandos de Diversion`)
@@ -283,7 +283,7 @@ const {
             value: `Roba dinero a alguien`
           }
         )
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
   
       interaction.reply({ embeds: [embed], components: [button] });
   

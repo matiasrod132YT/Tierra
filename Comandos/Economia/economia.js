@@ -26,17 +26,17 @@ module.exports = {
       const embed2 = new EmbedBuilder()
       .setTitle(`💳 | Banco de ${interaction.guild.name}`)
       .setDescription(`Ya tienes una cuenta`)
-      .setColor(client.config.prefix)
+      .setColor(client.config.color)
       
       const embed4 = new EmbedBuilder()
       .setTitle(`💳 | Banco de ${interaction.guild.name}`)
       .setDescription(`Porfavor, Crea una cuenta primero`)
-      .setColor(client.config.prefix)
+      .setColor(client.config.color)
 
       const embed5 = new EmbedBuilder()
       .setTitle(`💳 | Banco de ${interaction.guild.name}`)
       .setDescription(`Tu cuenta fue eliminada en este servidor`)
-      .setColor(client.config.prefix)
+      .setColor(client.config.color)
 
       switch(options.getString("opciones")) {
         case "crear": {
@@ -55,7 +55,7 @@ module.exports = {
           const embed3 = new EmbedBuilder()
           .setTitle(`💳 | Banco de ${interaction.guild.name}`)
           .setDescription(`Tu cuenta fue creada con exito! Tienes ${Data.Wallet} en tu billetera`)
-          .setColor(client.config.prefix)
+          .setColor(client.config.color)
 
           interaction.reply({ embeds: [embed3], ephemeral: true })
             setTimeout(function(){interaction.deleteReply({ embeds: [embed3] })}, 5000);
@@ -69,7 +69,7 @@ module.exports = {
           .setAuthor({ name: `${interaction.user.tag}`, iconURL: `${interaction.user.displayAvatarURL({dynamic: true})}` })
           .setTitle(`Banco de ${interaction.guild.name}`)
           .setDescription(`**Usuario:** ${user}\n\n**Banco:** $${Data.Bank}\n**Billetera:** $${Data.Wallet}\n\n**Total:** $${Data.Bank + Data.Wallet}`)
-          .setColor(client.config.prefix)
+          .setColor(client.config.color)
 
           await interaction.reply({ embeds: [embed] })
         }

@@ -110,7 +110,7 @@ module.exports = {
             new EmbedBuilder()
               .setTitle("Sistema de Tickets")
               .setDescription("¡Sea credo el sistema de tickets con exito!")
-              .setColor(client.config.prefix)
+              .setColor(client.config.color)
               .addFields(
                 {
                   name: "💬 | Canal",
@@ -150,7 +150,7 @@ module.exports = {
           new EmbedBuilder()
             .setTitle(":tickets: Ticket")
             .setDescription(description == null ? sampleMessage : description)
-            .setColor(client.config.prefix)
+            .setColor(client.config.color)
         ],
         components: [
           new ActionRowBuilder().setComponents(
@@ -185,7 +185,7 @@ module.exports = {
                   value: `» <#${ticketData.channelId}>`,
                 }
               )
-              .setColor(client.config.prefix)
+              .setColor(client.config.color)
           ],
           ephemeral: true,
         });
@@ -202,7 +202,7 @@ module.exports = {
           new EmbedBuilder()
             .setTitle(":tickets: Ticket")
             .setDescription("¡Se a eliminado con exito el sistema de ticket!")
-            .setColor(client.config.prefix)
+            .setColor(client.config.color)
         ],
         ephemeral: true,
       });

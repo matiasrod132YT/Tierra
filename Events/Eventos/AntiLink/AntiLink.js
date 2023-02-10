@@ -30,7 +30,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
         .setDescription(`🗑 En **${guild.name}** los links no estan permitidos!`)
-        .setColor("#FF3939");
+        .setColor(client.config.color);
 
       const url =
         /((([(https)(http)]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/;

@@ -25,11 +25,11 @@ module.exports = {
         const Data = await nivelSchema.findOne({ Guild: guild.id, User: member.id});
 
         const embed = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setDescription(`**${member} todavia no tiene XP**`)
 
         const embed3 = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setDescription(`**El sistema de niveles esta desactivado en este servidor**`)
 
         if(!Data) return await interaction.reply({ embeds: [embed] });
@@ -54,7 +54,7 @@ module.exports = {
         const attachment = new AttachmentBuilder(Card, {name: "rank.png"});
 
         const embed2 = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setTitle(`Nivel de ${member.user.username}`)
         .setImage("attachment://rank.png")
 

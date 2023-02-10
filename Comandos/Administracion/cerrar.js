@@ -29,7 +29,7 @@ module.exports = {
         const tiempo = options.getString("tiempo") || "No hay tiempo definido / Infinito"
 
         const embed = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         if(!channel.permissionsFor(guild.id).has("SendMessages"))
         return interaction.reply({ embeds: [embed.setDescription("Este canal esta cerrado")], ephemeral: true})

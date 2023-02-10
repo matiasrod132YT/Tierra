@@ -20,27 +20,27 @@ module.exports = {
         const embed = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`Porfavor, Crea una cuenta primero`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed2 = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`No tienes dinero en tu cuenta para retirar`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed3 = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`Has retirado todo tu dinero`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed4 = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`Solo puede ser un numero o \`todo\`!`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed5 = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`No tienes dinero en tu cuenta para retirarlo a tu billetera`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         let Data = await cuentaSchema.findOne({ Guild: interaction.guild.id, User: user.id }).catch(err => { })
         if (!Data) return interaction.reply({ embeds: [embed], ephemeral: true }),
@@ -73,7 +73,7 @@ module.exports = {
 
             const embed6 = new EmbedBuilder()
             .setDescription(`Se a retirado con exito $${parseInt(Converted)} de tu cuenta`)
-            .setColor(client.config.prefix)
+            .setColor(client.config.color)
 
             return interaction.reply({ embeds: [embed6], ephemeral: true}),
                 setTimeout(function(){interaction.deleteReply({ embeds: [embed5] })}, 5000)

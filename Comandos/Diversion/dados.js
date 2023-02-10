@@ -14,7 +14,7 @@ module.exports = {
       .setTitle("🎲Dados")
       .setDescription(`Se tiro el dado y salio ${respuesta}`)
       .setFooter({ text: `Solicitado por: ${interaction.user.tag}`})
-      .setColor(client.config.prefix)
+      .setColor(client.config.color)
 
       interaction.reply({embeds: [embed]});
     }

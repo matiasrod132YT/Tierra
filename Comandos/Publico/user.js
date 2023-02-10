@@ -17,7 +17,6 @@ module.exports = {
         const tag = user.tag;
 
         const embed = new EmbedBuilder()
-        .setColor(client.config.prefix)
         .setAuthor({ name: tag, iconURL: icon})
         .setThumbnail(icon)
         .addFields({ name: "Miembro", value: `${user}`, inline: false})
@@ -27,6 +26,7 @@ module.exports = {
         .addFields({ name: "ID:", value: `${user.id}`, inline: false})
         .setFooter({ text: `Solicitado por: ${interaction.user.tag}`})
         .setTimestamp()
+        .setColor(client.config.color)
 
         await interaction.reply({ embeds: [embed] });
     }

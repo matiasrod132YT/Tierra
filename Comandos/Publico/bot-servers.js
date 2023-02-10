@@ -16,7 +16,7 @@ module.exports = {
         const embed = new EmbedBuilder()
         .setTitle(`Lista de Servidores`)
         .setDescription(`${servers2}`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         await interaction.reply({ embeds: [embed] })
     }

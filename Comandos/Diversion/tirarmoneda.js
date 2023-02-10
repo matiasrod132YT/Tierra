@@ -14,7 +14,7 @@ module.exports = {
       .setTitle("🔁Tirar Moneda")
       .setDescription(`Se tiro la moneda y salio ${respuesta}`)
       .setFooter({ text: `Solicitado por: ${interaction.user.tag}`})
-      .setColor(client.config.prefix)
+      .setColor(client.config.color)
 
       interaction.reply({embeds: [embed]});
     }

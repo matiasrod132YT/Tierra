@@ -26,7 +26,7 @@ module.exports = {
             .setTitle("ENCUESTA")
             .setDescription(description)
             .setTimestamp()
-            .setColor(client.config.prefix)
+            .setColor(client.config.color)
 
         try {
             const m = await channel.send({ embeds: [embed] });

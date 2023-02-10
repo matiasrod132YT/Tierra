@@ -18,7 +18,7 @@ module.exports = {
         const Embed = new EmbedBuilder()
         .setAuthor({ name: "Piedra Papel Tijera", iconURL: user.displayAvatarURL() })
         .setDescription(`<@${user.id}> escoje piedra, papel o tijera!`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const row = new ActionRowBuilder().addComponents(
 
@@ -62,7 +62,7 @@ module.exports = {
                         return interaction.editReply({
                             embeds: [
                                 new EmbedBuilder()
-                                    .setColor("#FF3939")
+                                    .setColor(client.config.color)
                                     .setAuthor({ name: "Piedra Papel Tijera", iconURL: user.displayAvatarURL() })
                                     .setDescription(`\`\`\`EMPATE\`\`\``)
                                     .addFields(
@@ -79,7 +79,7 @@ module.exports = {
                         return interaction.editReply({
                             embeds: [
                                 new EmbedBuilder()
-                                    .setColor("#FF3939")
+                                    .setColor(client.config.color)
                                     .setAuthor({ name: "Piedra Papel Tijera", iconURL: user.displayAvatarURL() })
                                     .setDescription(`\`\`\`PERDISTES\`\`\``)
                                     .addFields(
@@ -95,7 +95,7 @@ module.exports = {
                         return interaction.editReply({
                             embeds: [
                                 new EmbedBuilder()
-                                    .setColor("#FF3939")
+                                    .setColor(client.config.color)
                                     .setAuthor({ name: "Piedra Papel Tijera", iconURL: user.displayAvatarURL() })
                                     .setDescription(`\`\`\`GANASTES\`\`\``)
                                     .addFields(
@@ -114,7 +114,7 @@ module.exports = {
                         return interaction.editReply({
                             embeds: [
                                 new EmbedBuilder()
-                                    .setColor("#FF3939")
+                                    .setColor(client.config.color)
                                     .setAuthor({ name: "Piedra Papel Tijera", iconURL: user.displayAvatarURL() })
                                     .setDescription(`\`\`\`GANASTES\`\`\``)
                                     .addFields(
@@ -131,7 +131,7 @@ module.exports = {
                         return interaction.editReply({
                             embeds: [
                                 new EmbedBuilder()
-                                    .setColor("#FF3939")
+                                    .setColor(client.config.color)
                                     .setAuthor({ name: "Piedra Papel Tijera", iconURL: user.displayAvatarURL() })
                                     .setDescription(`\`\`\`EMPATE\`\`\``)
                                     .addFields(
@@ -147,7 +147,7 @@ module.exports = {
                         return interaction.editReply({
                             embeds: [
                                 new EmbedBuilder()
-                                    .setColor("#FF3939")
+                                    .setColor(client.config.color)
                                     .setAuthor({ name: "Piedra Papel Tijera", iconURL: user.displayAvatarURL() })
                                     .setDescription(`\`\`\`PERDISTES\`\`\``)
                                     .addFields(
@@ -168,7 +168,7 @@ module.exports = {
                         return interaction.editReply({
                             embeds: [
                                 new EmbedBuilder()
-                                    .setColor("#FF3939")
+                                    .setColor(client.config.color)
                                     .setAuthor({ name: "Piedra Papel Tijera", iconURL: user.displayAvatarURL() })
                                     .setDescription(`\`\`\`PERDISTES\`\`\``)
                                     .addFields(
@@ -185,7 +185,7 @@ module.exports = {
                         return interaction.editReply({
                             embeds: [
                                 new EmbedBuilder()
-                                    .setColor("#FF3939")
+                                    .setColor(client.config.color)
                                     .setAuthor({ name: "Piedra Papel Tijera", iconURL: user.displayAvatarURL() })
                                     .setDescription(`\`\`\`GANASTES\`\`\``)
                                     .addFields(
@@ -201,7 +201,7 @@ module.exports = {
                         return interaction.editReply({
                             embeds: [
                                 new EmbedBuilder()
-                                    .setColor("#FF3939")
+                                    .setColor(client.config.color)
                                     .setAuthor({ name: "Piedra Papel Tijera", iconURL: user.displayAvatarURL() })
                                     .setDescription(`\`\`\`EMPATE\`\`\``)
                                     .addFields(

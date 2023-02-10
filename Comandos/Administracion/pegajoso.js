@@ -26,17 +26,17 @@ module.exports = {
         const embed = new EmbedBuilder()
         .setDescription(mensaje)
         .setFooter({ text: "Esto es un mensaje pegajoso"})
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed2 = new EmbedBuilder()
         .setTitle(`📧 | Mensaje Pegajoso`)
         .setDescription(`El mensaje pegajoso se a creado con exito`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed3 = new EmbedBuilder()
         .setTitle(`📧 | Mensaje Pegajoso`)
         .setDescription(`ya hay un mensaje pegajoso creado en este canal, porfavor has un /despegar para eliminarlo y intenta denuevo`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         pegajosoSchema.findOne({ CanalID: interaction.channel.id}, async (err,data) => {
             if (err) throw err;

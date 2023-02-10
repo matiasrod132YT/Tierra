@@ -43,17 +43,17 @@ module.exports = {
         const embed = new EmbedBuilder()
         .setTitle(`🔒 | Verificacion`)
         .setDescription(`¡Bienvenido ${interaction.user.name} al servidor! Haz click al boton "Verificar" para verificarte en el servidor.`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         
         const embed2 = new EmbedBuilder()
         .setTitle(`🔒 | Verificacion`)
         .setDescription(`Se a creado con exito la verificacion`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed3 = new EmbedBuilder()
         .setTitle(`🔒 | Verificacion`)
         .setDescription(`Haz sido verificado en el servidor **${interaction.guild.name}** con el rol de **${rol.name}**`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         interaction.channel.send({ embeds: [embed], components: [boton] });
         await interaction.user.send({ embeds: [embed3] }).catch(err => {return});

@@ -29,12 +29,12 @@ module.exports = {
         const errembed = new EmbedBuilder()
         .setTitle(`✉ | Creador de Embed's`)
         .setDescription(`No puedes poner esta imagen`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const errembed2 = new EmbedBuilder()
         .setTitle(`✉ | Creador de Embed's`)
         .setDescription(`No puedes poner este thumbnail`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         if (imagen) {
             if (!imagen.startsWith("http")) return await interaction.reply({ embeds: [errembed], ephemeral: true })
@@ -57,7 +57,7 @@ module.exports = {
         const embed2 = new EmbedBuilder()
         .setTitle(`✉ | Creador de Embed's`)
         .setDescription(`Tu embed creado con exito`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         await interaction.reply({ embeds: [embed2], ephemeral: true });
 

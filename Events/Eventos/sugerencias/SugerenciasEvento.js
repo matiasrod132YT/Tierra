@@ -9,7 +9,7 @@ module.exports = {
         if(!interaction.isButton()) return;
 
         const embedd = new EmbedBuilder()
-        .setColor("#FF3939")
+        .setColor(client.config.color)
 
         if (customId == 'sugerencia-aceptar' || customId == 'sugerencia-rechazar') {
             if (!member.permissions.has(PermissionFlagsBits.Administrator))

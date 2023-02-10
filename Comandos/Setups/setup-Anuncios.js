@@ -19,10 +19,10 @@ module.exports = {
     ),
 
     async execute(interaction, client) {
-        const {options, channel} = interaction;
+        const {options} = interaction;
 
         const embed = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const anunciosCanal = options.getChannel('canal')
         const mencion = options.getRole('mencion')

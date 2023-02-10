@@ -22,7 +22,7 @@ module.exports = {
         const target = options.getUser("usuario");
 
         const maximo = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setDescription(`**🗑 | No se puede eliminar más de 100 mensajes**`)
 
         if(numero > 99) {return interaction.reply({ embeds: [maximo]}),
@@ -34,7 +34,7 @@ module.exports = {
         });
 
         const res = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         
         if(target) {
             let i = 0;

@@ -50,7 +50,7 @@ const {
       const embed2 = new EmbedBuilder()
       .setTitle(`Adivina el Numero`)
       .setDescription(`Se a creado un evento de Adivina el Numero, Adivina el numero!!!`)
-      .setColor(client.config.prefix)
+      .setColor(client.config.color)
       await canal.send({ embeds: [embed2] })
     },
   };

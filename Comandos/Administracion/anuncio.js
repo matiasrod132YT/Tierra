@@ -24,15 +24,15 @@ module.exports = {
         .setDescription(descripcion)
         .setTimestamp()
         .setFooter({ text: `${interaction.guild.name}© - Todos los derechos reservados` })
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed2 = new EmbedBuilder()
         .setTitle(`📢 | El Anuncio se envio correctamente`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const errEmbed = new EmbedBuilder()
         .setDescription("**📢 | Los Anuncios no están configuradas en el servidor!**")
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         anuncioSetup.findOne({ GuildId: interaction.guild.id}, async (err, data) => {
             if (err) throw err;

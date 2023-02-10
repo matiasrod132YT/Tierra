@@ -27,7 +27,7 @@ const {
         .setTitle(`INVITAME`)
         .setDescription(`Añade a Tierra a tu servidor\n\n \`Dale click al boton para invitarme a tu servidor\``)
         .setFooter({ text:`Solicitado por: ${interaction.user.tag}`})
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
   
       interaction.reply({ embeds: [embed], components: [boton] });
     },

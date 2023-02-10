@@ -17,7 +17,7 @@ module.exports = {
             { name: "Prendido", value: ` \`${dias}\` Dias, \`${horas}\` Horas, \`${minutos}\` Minutos y \`${segundos}\` Segundos.`}
         )
         .setTimestamp()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         interaction.reply({ embeds: [embed] })
     }

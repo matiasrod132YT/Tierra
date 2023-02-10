@@ -21,7 +21,7 @@ module.exports = {
       const embed = new EmbedBuilder()
       .setTitle("8Ball")
       .setDescription(`**Tu pregunta** \n ${pregunta} \n\n **Respuesta** \n ${respuesta}`)
-      .setColor(client.config.prefix)
+      .setColor(client.config.color)
 
       interaction.reply({embeds: [embed]});
     }

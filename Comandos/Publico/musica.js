@@ -94,7 +94,7 @@ module.exports = {
             `**[${song.title}](${song.url})** fue añadido a la cola de canciones`
           )
           .setThumbnail(song.thumbnail)
-          .setColor(client.config.prefix)
+          .setColor(client.config.color)
           .setFooter({ text: `Duracion: ${song.duration}` });
         // Respond with the embed containing information about the player
         await interaction.reply({
@@ -163,7 +163,7 @@ module.exports = {
             `**[${song.title}](${song.url})** fue añadido a la cola de canciones`
           )
           .setThumbnail(song.thumbnail)
-          .setColor(client.config.prefix)
+          .setColor(client.config.color)
           .setFooter({ text: `Duracion: ${song.duration}` });
         // Respond with the embed containing information about the player
         await interaction.reply({
@@ -245,7 +245,7 @@ module.exports = {
           const embed = new EmbedBuilder()
             .setDescription(`${currentSong.title} fue skipeada!`)
             .setThumbnail(currentSong.thumbnail)
-            .setColor(client.config.prefix);
+            .setColor(client.config.color);
           interaction.reply({ embeds: [embed] });
         }
         break;
@@ -284,7 +284,7 @@ module.exports = {
                 `\n\n**Queue**\n${queueString}`
             )
             .setThumbnail(currentSong.setThumbnail)
-            .setColor(client.config.prefix);
+            .setColor(client.config.color);
     
           interaction.reply({ embeds: [embed] });
         }

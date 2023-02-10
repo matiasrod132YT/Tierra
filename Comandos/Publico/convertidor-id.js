@@ -26,7 +26,7 @@ module.exports = {
             { name: "**Sintaxis de chat:**", value: `**\`<t:${res}>\`**`, inline: true},
             )
         .setTimestamp()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         await interaction.reply({ embeds: [embed], ephemeral: false});
     }

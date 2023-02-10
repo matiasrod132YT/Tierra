@@ -27,20 +27,20 @@ module.exports = {
         const embed = new EmbedBuilder()
         .setTitle("👞 | Usuario Kickeado")
         .setDescription(`${user} fue kickeado del servidor \n **→ Razón:** ${razon} \n **→ Por:** <@${interaction.user.id}>`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setTimestamp()
 
         const embed2 = new EmbedBuilder()
         .setTitle(`**👞 | El Kick se realizo correctamente**`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const errEmbed = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setDescription("**¡Las sanciones no están configuradas en el servidor!**")
 
         const errEmbed2 = new EmbedBuilder()
         .setDescription(`**👞 | No puedes kickear a ${user.username} ya que tienen un rol mayor.**`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         sancionesSetup.findOne({ GuildId: interaction.guild.id}, async (err, data) => {
             if (err) throw err;

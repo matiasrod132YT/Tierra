@@ -44,7 +44,7 @@ const {
           const embed = new EmbedBuilder()
             .setTitle('Rol Añadido')
             .setDescription(`Se a añadido con exito el rol ${rol} a ${usuario}`)
-            .setColor(client.config.prefix)
+            .setColor(client.config.color)
             .setTimestamp()
             .setFooter({ text: `Solicitado por: ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() });
 
@@ -52,7 +52,7 @@ const {
         } catch {
           const embed2 = new EmbedBuilder()
             .setDescription(`Algo salio mal. Unase al servidor de soporte para informar del error`)
-            .setColor(client.config.prefix)
+            .setColor(client.config.color)
           return interaction.reply({ embeds: [embed2], ephemeral: true });
         }
       }
@@ -62,7 +62,7 @@ const {
 
         const errembed2 = new EmbedBuilder()
           .setDescription(`**El usuario no tiene el rol que seleccionastes**`)
-          .setColor(client.config.prefix)
+          .setColor(client.config.color)
 
         if (!usuario.roles.cache.has(rol.id)) {
           return interaction.reply({ embeds: [errembed2], ephemeral: true })
@@ -74,7 +74,7 @@ const {
             const embed = new EmbedBuilder()
               .setTitle('Rol Removido')
               .setDescription(`Se a removido con exito el rol ${rol} a ${usuario}`)
-              .setColor(client.config.prefix)
+              .setColor(client.config.color)
               .setTimestamp()
               .setFooter({ text: `Solicitado por: ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() });
   
@@ -82,7 +82,7 @@ const {
           } catch {
             const errembed = new EmbedBuilder()
             .setDescription(`Algo salio mal. Unase al servidor de soporte para informar del error`)
-            .setColor("#FF3939");
+            .setColor(client.config.color)
             return interaction.reply({ embed: [errembed], ephemeral: true });
           }
         }

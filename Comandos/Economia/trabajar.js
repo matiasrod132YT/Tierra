@@ -12,7 +12,7 @@ module.exports = {
         const embed = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`Porfavor, Crea una cuenta primero`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         let Data = await cuentaSchema.findOne({ Guild: interaction.guild.id, User: user.id }).catch(err => { })
         if (!Data) return interaction.reply({ embeds: [embed], ephemeral: true }),
@@ -22,8 +22,9 @@ module.exports = {
             let dinerotrabajado = Math.floor(Math.random() * 160) + 90;
 
             const embed2 = new EmbedBuilder()
+            .setAuthor({ name: interaction.user.tag, iconURL: interaction.user.displayAvatarURL({dynamic: true}) })
             .setDescription(`Haz trabajado y ganastes $${dinerotrabajado}`)
-            .setColor(client.config.prefix)
+            .setColor(client.config.color)
 
             Data.Wallet += dinerotrabajado
             Data.save()

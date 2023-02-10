@@ -16,7 +16,7 @@ module.exports = {
     const embed = new EmbedBuilder()
         .setTitle("PING")
         .setDescription(`**Ping del bot:** ${client.ws.ping}MS`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
       interaction.reply({embeds: [embed]});
   }
 };

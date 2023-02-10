@@ -26,7 +26,7 @@ module.exports = {
         .setTitle(`MD`)
         .setDescription(`${descripcion}`)
         .setFooter({ text: `Enviado por: ${interaction.user.tag}`})
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         await usuario.send({ embeds: [embed] })
     }

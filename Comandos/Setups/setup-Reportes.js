@@ -19,7 +19,7 @@ module.exports = {
         const canal = options.getChannel("canal")
 
         const embed = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         reporteSchema.findOne({ Guild: guildId}, async (err, data) => {
 

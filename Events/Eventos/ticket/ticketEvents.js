@@ -48,7 +48,7 @@ const {
               "UseApplicationCommands",
             ];
   
-            const ticketEmbed = new EmbedBuilder().setColor("#FF3939");
+            const ticketEmbed = new EmbedBuilder().setColor(client.config.color);
   
             interaction.guild.channels
               .create({
@@ -120,7 +120,7 @@ const {
                         .setDescription(
                           `**Tu ticket se a creado exitosamente en <#${channel.id}>!**`
                         )
-                        .setColor("#FF3939"),
+                        .setColor(client.config.color),
                     ],
                     ephemeral: true,
                   })
@@ -146,7 +146,7 @@ const {
               return await interaction.reply({
                 embeds: [
                   new EmbedBuilder()
-                    .setColor("#FF3939")
+                    .setColor(client.config.color)
                     .setDescription(`¡No tienes permiso para usar este boton!`),
                 ],
                 ephemeral: true,
@@ -156,7 +156,7 @@ const {
             if (usersData.closed === true)
               return await interaction.reply({
                 embeds: [
-                  new EmbedBuilder().setDescription("El ticket ya está cerrado..").setColor("#FF3939")
+                  new EmbedBuilder().setDescription("El ticket ya está cerrado..").setColor(client.config.color)
                 ]
               });
   
@@ -173,7 +173,7 @@ const {
             if (!usersData.closer == member.id)
               return await interaction.reply({
                 embeds: [
-                  new EmbedBuilder().setDescription("¡No eres el usuario que cerro este ticket!").setColor("#FF3939")
+                  new EmbedBuilder().setDescription("¡No eres el usuario que cerro este ticket!").setColor(client.config.color)
                 ],
                 ephemeral: true,
               });
@@ -187,7 +187,7 @@ const {
             await interaction.reply({
               embeds: [
                 new EmbedBuilder()
-                  .setColor("#FF3939")
+                  .setColor(client.config.color)
                   .setTitle("Ticket Cerrado")
                   .setDescription(
                     "El ticket se ha cerrado, ¡el usuario que creó este ticket no puede verlo ahora!"
@@ -237,7 +237,7 @@ const {
             if (!uData.closed)
               return await interaction.reply({
                 embeds: [
-                  new EmbedBuilder().setDescription("El ticket no está cerrado.").setColor("#FF3939")
+                  new EmbedBuilder().setDescription("El ticket no está cerrado.").setColor(client.config.color)
                 ]
               });
   
@@ -281,7 +281,7 @@ const {
                   new EmbedBuilder()
                     .setTitle("Ticket Reabierto!")
                     .setDescription(`Reabierto por ${member.user.tag}`)
-                    .setColor("#FF3939"),
+                    .setColor(client.config.color),
                 ],
                 ephemeral: true
               })
@@ -300,7 +300,7 @@ const {
               return await interaction.reply({
                 embeds: [
                   new EmbedBuilder()
-                    .setColor("#FF3939")
+                    .setColor(client.config.color)
                     .setDescription(`No tienes permiso para usar este botón`),
                 ],
                 ephemeral: true,
@@ -358,7 +358,7 @@ const {
                         value: `${new Date().toLocaleString()}`
                       }
                     )
-                    .setColor("#FF3939"),
+                    .setColor(client.config.color),
                 ],
                 files: [transcript],
               })
@@ -374,7 +374,7 @@ const {
                       name: "Tiempo",
                       value: "El ticket se eliminara en 5 segundos...",
                     })
-                    .setColor("#FF3939"),
+                    .setColor(client.config.color),
                 ],
               })
               .catch((err) => console.log(err));

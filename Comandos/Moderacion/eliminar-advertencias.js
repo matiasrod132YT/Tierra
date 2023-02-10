@@ -18,11 +18,11 @@ module.exports = {
 
         const embed = new EmbedBuilder()
         .setDescription(`**⚠️ | Las advertencias de ${usuario.tag} fueron eliminadas**`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed2 = new EmbedBuilder()
         .setDescription(`**⚠️ | ${usuario.tag} no tiene advertencias para eliminar**`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         warningSchema.findOne({ GuildID: guildId, UserID: usuario.id, UserTag: usuario.tag }, async (err, data) => {
             if (err) throw err;

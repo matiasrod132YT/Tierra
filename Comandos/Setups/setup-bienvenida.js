@@ -73,7 +73,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setFooter({ text: `${prefix} | ${interaction.guild.name}`, iconURL: interaction.guild.iconURL() })
-            .setColor(client.config.prefix)
+            .setColor(client.config.color)
 
         if (subcommand === 'crear') {
             welcomeSchema.findOne({ guildId: guildId }, async (err, data) => {
@@ -104,7 +104,7 @@ module.exports = {
                                     value: `${rol}`,
                                     inline: true
                                 })
-                                .setColor("#FF3939")
+                                .setColor(client.config.color)
                         ],
                         ephemeral: true
                     })
@@ -113,7 +113,7 @@ module.exports = {
                         embeds: [
                             embed
                                 .setDescription(`**👋 | Usa /setup-bienvenida eliminar y actualizar_canal**`)
-                                .setColor("#FF3939")
+                                .setColor(client.config.color)
                         ],
                         ephemeral: true
                     })
@@ -127,7 +127,7 @@ module.exports = {
                         embeds: [
                             embed
                                 .setDescription('**👋 | No se encontraron datos**')
-                                .setColor("#FF3939")
+                                .setColor(client.config.color)
                         ],
                         ephemeral: true
                     })
@@ -136,7 +136,7 @@ module.exports = {
                         embeds: [
                             embed
                                 .setDescription(`**👋 | ${prefix} eliminado con exito**`)
-                                .setColor("#FF3939")
+                                .setColor(client.config.color)
                         ],
                         ephemeral: true
                     })
@@ -150,7 +150,7 @@ module.exports = {
                         embeds: [
                             embed
                                 .setDescription('**👋 | No se encontraron datos**')
-                                .setColor("#FF3939")
+                                .setColor(client.config.color)
                         ],
                         ephemeral: true
                     })
@@ -169,7 +169,7 @@ module.exports = {
                                     name: `Canal`,
                                     value: `| Antiguo <#${antiguo.canal}>\n| Nuevo ${actualizarCanal}`,
                                 })
-                                .setColor("#FF3939")
+                                .setColor(client.config.color)
                         ],
                         ephemeral: true
                     })

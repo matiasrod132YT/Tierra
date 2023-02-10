@@ -26,24 +26,24 @@ module.exports = {
         const embed = new EmbedBuilder()
         .setTitle("🔨 | Usuario Baneado")
         .setDescription(`${user} fue baneado del servidor \n **→ Por:** <@${interaction.user.id}> \n **→ Razón:** ${razon} \n **→ id:** ${user.id}`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setTimestamp()
 
         const embed2 = new EmbedBuilder()
         .setTitle(`🔨 | El Ban se realizo correctamente`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const errEmbed = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setDescription("¡Las sanciones no están configuradas en el servidor!")
 
         const errEmbed2 = new EmbedBuilder()
         .setDescription(`🔨 | No puedes banear a ${user.username} ya que tienen un rol mayor.`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
             
         const errEmbed3 = new EmbedBuilder()
         .setDescription(`**Algo salio mal...**`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         
         sancionesSetup.findOne({ GuildId: interaction.guild.id}, async (err, data) => {
             if (err) throw err;

@@ -36,20 +36,20 @@ module.exports = {
         const embed = new EmbedBuilder()
         .setTitle("🔈 | Usuario Muteado")
         .setDescription(`${user} fue muteado \n **Por:** <@${interaction.user.id}> \n **Razón:** ${razon} \n **Duracion:** ${tiempo}`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setTimestamp();
 
         const embed2 = new EmbedBuilder()
         .setTitle(`**🔈 | El Mute se realizo correctamente**`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const errEmbed = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setDescription("**¡Las sanciones no están configuradas en el servidor!**")
 
         const errEmbed2 = new EmbedBuilder()
         .setDescription('**Algo salio mal...**')
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         sancionesSetup.findOne({ GuildId: interaction.guild.id}, async (err, data) => {
             if (err) throw err;

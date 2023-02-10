@@ -67,7 +67,7 @@ process.on("unhandledRejection", (razon, p) => {
     .setTitle("Error Encontrado")
     .setFooter({ text: "⚠️Sistema AntiCrash" })
     .setTimestamp()
-    .setColor("#FF3939");
+    .setColor(client.config.color);
   const Canal = client.channels.cache.get(CanalId);
   if (!Canal) return;
   Canal.send({
@@ -78,43 +78,3 @@ process.on("unhandledRejection", (razon, p) => {
     ],
   });
 });
-
-const pegajosoSchema = require("./schemas/pegajoso/pegajosoSchema");
-
-client.on(Events.MessageCreate, async (message, interaction) => {
-  if (message.author.bot) return;
-
-  pegajosoSchema.findOne({ CanalID: message.channel.id}, async (err, data) => {
-    if (err) throw err;
-
-    if (!data) {
-      return;
-    }
-
-    let canal = data.CanalID;
-    let cacheCanal = client.channels.cache.get(canal);
-
-    const embed = new EmbedBuilder()
-    .setDescription(data.Mensaje)
-    .setFooter({ text: "Esto es un mensaje pegajoso"})
-    .setColor(client.config.prefix)
-
-    if (message.channel.id == canal) {
-      data.Contador += 1;
-      data.save();
-
-      if (data.Contador >= data.maxContador) {
-        client.channels.cache.get(canal).messages.fetch(data.ultimoMensajeId).then(async(m) => {
-          m.delete();
-        })
-
-        let nuevoMensaje = await cacheCanal.send({ embeds: [embed] });
-
-        data.ultimoMensajeId = nuevoMensaje.id;
-        data.Contador = 0;
-        data.save();
-      }
-    }
-
-  })
-})

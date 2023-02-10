@@ -32,7 +32,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                 .setAuthor({ name: member.guild.name, iconURL: member.user.avatarURL() })
                 .setDescription(messageWelcome == null ? defaultMessage : messageWelcome)
-                .setColor("#FF3939")
+                .setColor(client.config.color)
 
                 canal.send({ embeds: [embed], ephemeral: true })
             }

@@ -21,7 +21,7 @@ module.exports = {
             .setTitle(`Avatar`)
             .setImage(icon)
             .setFooter({ text: `Solicitado por: ${interaction.user.tag}`})
-            .setColor(client.config.prefix)
+            .setColor(client.config.color)
         interaction.reply({embeds: [embed]});
     }
 }

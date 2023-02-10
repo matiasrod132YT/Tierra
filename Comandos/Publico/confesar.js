@@ -5,39 +5,41 @@ const confesionSchema = require("../../schemas/confesion/confesionSchema")
 module.exports = {
   data: new SlashCommandBuilder()
   .setName("confesar")
-  .setDescription("Envia una confesion (No se muestra nombre)")
+  .setDescription("Envia una concecion (No se muestra nombre)")
   .addStringOption((option) =>
     option
-      .setName("confesion")
-      .setDescription("tu confesion")
+      .setName("concecion")
+      .setDescription("Tu concecion")
       .setRequired(true)
 ),
 
   async execute (interaction, client) {
     const { options } = interaction;
 
-    const confesion = options.getString("confesion")
+    const concecion = options.getString("concecion")
     
     const embed = new EmbedBuilder()
     .setTitle(`🧾 | Confesion`)
-    .setDescription(`${confesion}`)
+    .addFields(
+      {name: `Confecion`, value: ` \`\`\`${concecion}\`\`\` `},
+    )
     .setTimestamp()
     .setFooter({
       text: "/confesar para mandar una confesion"
     })
-    .setColor(client.config.prefix)
+    .setColor(client.config.color)
 
     const errembed = new EmbedBuilder()
     .setTitle(`🧾 | Confesion`)
     .setDescription("**¡La confesion no esta configurada en el servidor!**")
-    .setColor(client.config.prefix)
+    .setColor(client.config.color)
 
     confesionSchema.findOne({GuildId: interaction.guild.id}, async (err, data) => {
         const canal = interaction.guild.channels.cache.get(data.ChannelId);
         const embed2 = new EmbedBuilder()
         .setTitle(`🧾 | Confesion`)
         .setDescription(`Se a enviado con exito tu confesion en ${canal}`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         
         if (err) throw err;
     

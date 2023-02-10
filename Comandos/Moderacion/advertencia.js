@@ -57,19 +57,19 @@ module.exports = {
                 const embed = new EmbedBuilder()
                 .setTitle(`⚠️ | Usuario Advertido`)
                 .setDescription(`${usuario} fue **advertido**\n**Por:** <@${interaction.user.id}>\n**→ Razón:** ${razon}\n**→ Staff**: <@${interaction.user.id}>`)
-                .setColor(client.config.prefix)
+                .setColor(client.config.color)
 
                 const embed2 = new EmbedBuilder()
                 .setTitle(`⚠️ | La Advertencia se realizo correctamente`)
-                .setColor(client.config.prefix)
+                .setColor(client.config.color)
 
                 const embed3 = new EmbedBuilder()
                 .setDescription(`⚠️ | Haz sido **advertido** en ${interaction.guild.name} | ${razon}`)
-                .setColor(client.config.prefix)
+                .setColor(client.config.color)
 
                 const errEmbed = new EmbedBuilder()
                 .setDescription("**¡Las sanciones no están configuradas en el servidor!**")
-                .setColor(client.config.prefix)
+                .setColor(client.config.color)
 
                 if (err) throw err;
     

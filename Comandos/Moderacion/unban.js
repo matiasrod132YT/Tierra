@@ -22,24 +22,24 @@ module.exports = {
         const embed = new EmbedBuilder()
         .setTitle("🚪 | Usuario Desbaneado")
         .setDescription(`<@${userId}> fue desbaneado del servidor \n **Por:** <@${interaction.user.id}>`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setTimestamp();
 
         const embed2 = new EmbedBuilder()
         .setTitle(`**🚪 | El Desbaneo se realizo correctamente**`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const errEmbed = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setDescription("**¡Las sanciones no están configuradas en el servidor!**")
 
         const errEmbed2 = new EmbedBuilder()
         .setDescription(`**🚪 | Porfavor proporcione una ID válida.**`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const errEmbed3 = new EmbedBuilder()
         .setDescription(`**Algo salio mal...**`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         sancionesSetup.findOne({ GuildId: interaction.guild.id}, async (err, data) => {
             if (err) throw err;

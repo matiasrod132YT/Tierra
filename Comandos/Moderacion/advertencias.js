@@ -24,7 +24,7 @@ module.exports = {
             if (err) throw err;
 
             if (data) {
-                embed.setColor(client.config.prefix)
+                embed.setColor(client.config.color)
                 .setTitle(`⚠️ | Advertencias de ${usuario.tag}`)
                 .setDescription(`${data.Content.map(
                     (w, i) => 
@@ -37,7 +37,7 @@ module.exports = {
 
                 interaction.reply({ embeds: [embed] });
             } else {
-                noadvertencias.setColor(client.config.prefix)
+                noadvertencias.setColor(client.config.color)
                 .setDescription(`**⚠️ | ${usuario.tag} tiene \`0\` advertencias!**`)
 
                 interaction.reply({ embeds: [noadvertencias] })

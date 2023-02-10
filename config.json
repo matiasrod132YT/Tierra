@@ -1,5 +1,5 @@
 {
     "token": "MTA1MzA2MjYzODM2OTc4Nzk0NA.GqhEkX.3ZxsVMgl1yd7epKMAjtJ_XbolaZIux1m4PTxiM",
     "DatabaseURL": "mongodb+srv://Matiasrod132:@tierra.dhgdheq.mongodb.net/?retryWrites=true&w=majority",
-    "prefix": "#FF3939"
+    "color": "#FF3939"
 }

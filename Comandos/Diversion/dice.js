@@ -16,7 +16,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
       .setDescription(descripcion)
-      .setColor(client.config.prefix)
+      .setColor(client.config.color)
 
       interaction.reply({embeds: [embed]});
     }

@@ -24,7 +24,7 @@ module.exports = {
         const target = interaction.options.getUser(`usuario`);
 
         const embed = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         .setDescription(`**El sistema de niveles esta desactivado en este servidor**`)
 
         if(!nivelstatus.status) return await interaction.reply({ embeds: [embed], ephemeral: true });
@@ -32,7 +32,7 @@ module.exports = {
         nivelSchema.deleteMany({ Guild: guildId, User: target.id}, async (err, data) => {
             
             const embed = new EmbedBuilder()
-            .setColor(client.config.prefix)
+            .setColor(client.config.color)
             .setDescription(`**El nivel de XP de ${target.tag} fue reseteado correctamente**`)
 
             await interaction.reply({ embeds: [embed], ephemeral: true })

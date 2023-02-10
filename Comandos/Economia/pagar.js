@@ -28,32 +28,32 @@ module.exports = {
         const embed = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`El usuario no tiene una cuenta`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed2 = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`Porfavor, Crea una cuenta primero`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed4 = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`No puedes mandarte dinero a ti mismo`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed5 = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`Has pagado \`\`$${pagar}\`\` a ${Member}`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed6 = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`**Has recibido un pago**\n\n\`\`De: \`\`${user}\n\`\`Cantidad: $${pagar}\`\``)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         
         const embed8 = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`Has cancelado el pago`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
         
         let data = await cuentaSchema.findOne({ Guild: interaction.guild.id, User: user.id }).catch(err => { })
         if (!data) return interaction.reply({ embeds: [embed2], ephemeral: true })
@@ -69,7 +69,7 @@ module.exports = {
         const embed3 = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`No tienes esa cantidad de dinero. \n\n**Banco:** ${Sender.Bank}\n**Cantidad a pagar:** ${pagar}`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const dinerorecivido = await cuentaSchema.findOne({
             Guild: interaction.guild.id,
@@ -87,7 +87,7 @@ module.exports = {
         const embed7 = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`**Confirmacion de pago**\n\n**Para: ${Member}**\n**De: ${sender}**\n**Cantidad: ${pagar}**\n\n**Para confirmar el pago dale al boton \`\`CONFIRMAR\`\` y para rechazar darle al boton \`\`RECHAZAR\`\`.**`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const botones = new ActionRowBuilder()
           .addComponents(

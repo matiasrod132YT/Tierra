@@ -31,12 +31,12 @@ module.exports = {
             { name: `Persona 2`, value: `${usuario2}`, inline: true },
             { name: `Resultado`, value: `**${usuario1}** y **${usuario2}** son **${resultado}%**`, inline: false },
         )
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed2 = new EmbedBuilder()
         .setTitle(`♥・Medidor de amor`)
         .setDescription(`No puedes shipear a la misma persona`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
     
         if (!usuario1) return interaction.reply({ content: "Seleccion" });
     

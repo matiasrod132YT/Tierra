@@ -16,12 +16,12 @@ module.exports = {
         const embed = new EmbedBuilder()
         .setTitle(`📧 | Mensaje Pegajoso`)
         .setDescription(`No hay un mensaje pegajoso en este canal`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed2 = new EmbedBuilder()
         .setTitle(`📧 | Mensaje Pegajoso`)
         .setDescription(`El mensaje pegajoso fue eliminado con exito`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         if (!data) {
             return await interaction.reply({ embeds: [embed], ephemeral: true })

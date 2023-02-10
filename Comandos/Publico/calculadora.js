@@ -10,7 +10,7 @@ module.exports = {
         const idPrefix = 'calulator'
         const embed = new EmbedBuilder()
             .setDescription("```\n0\n```")
-            .setColor(client.config.prefix)
+            .setColor(client.config.color)
         const row = new ActionRowBuilder()
             .addComponents(
                 new ButtonBuilder()
@@ -144,7 +144,7 @@ module.exports = {
             }
 
 
-            i.update({ embeds: [new EmbedBuilder().setColor(client.config.prefix).setDescription(`\`\`\`\n${data || extra}\n\`\`\``)], components: [row, row1, row2, row3, row4], ephemeral: false })
+            i.update({ embeds: [new EmbedBuilder().setColor(client.config.color).setDescription(`\`\`\`\n${data || extra}\n\`\`\``)], components: [row, row1, row2, row3, row4], ephemeral: false })
         })
     }
 }

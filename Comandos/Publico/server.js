@@ -76,7 +76,7 @@ module.exports = {
                 )
                 .setFooter({ text: `Solicitado por: ${interaction.user.tag}`})
                 .setThumbnail(icon)
-                .setColor(client.config.prefix)
+                .setColor(client.config.color)
             interaction.reply({ embeds: [embed]});
     }
 };

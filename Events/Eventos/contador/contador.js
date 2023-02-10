@@ -1,5 +1,4 @@
 const contadorSchema = require("../../../schemas/contador/contadorSchema");
-const { EmbedBuilder, RequestManager } = require("discord.js");
 
 module.exports = {
     name: "messageCreate",

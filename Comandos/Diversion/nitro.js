@@ -8,11 +8,11 @@ module.exports = {
  */
     async execute(interaction, client) {
         const nitro = new EmbedBuilder()
-        .setColor(client.config.prefix)
         .setTitle("¡Te han regalado una suscripción!")
         .setThumbnail("https://static.roundme.com/upload/user/d30750eda6c30bba9295ad629961420555c05496.png")
         .setDescription(`Te han regalado Nitro por **¡1 mes!**\nExpira en **48 horas**`)
-        .setFooter({ text: "convertido por TIERRA#0001", iconURL: "https://images-ext-2.discordapp.net/external/cRLNR3dzlHu8ufNcLHlseIiLr1y71NCKJDfkcytBCSI/%3Fsize%3D512/https/cdn.discordapp.com/avatars/1055739238710251520/f5bad05d75b5c1d25d9bf5bb2ba81b39.webp"});
+        .setFooter({ text: "convertido por TIERRA#0001", iconURL: "https://images-ext-2.discordapp.net/external/cRLNR3dzlHu8ufNcLHlseIiLr1y71NCKJDfkcytBCSI/%3Fsize%3D512/https/cdn.discordapp.com/avatars/1055739238710251520/f5bad05d75b5c1d25d9bf5bb2ba81b39.webp"})
+        .setColor(client.config.color)
 
         const row = new ButtonBuilder()
             .setCustomId("click")

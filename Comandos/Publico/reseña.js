@@ -1,9 +1,7 @@
 const {
   PermissionFlagsBits,
   SlashCommandBuilder,
-  EmbedBuilder,
-  Embed,
-  MembershipScreeningFieldType,
+  EmbedBuilder
 } = require("discord.js");
 
 const reviewSchema = require("../../schemas/Review/reviewSchema");
@@ -73,13 +71,13 @@ module.exports = {
         value: `${descripcion}`,
       },
     ])
-    .setColor(client.config.prefix)
+    .setColor(client.config.color)
     .setTimestamp()
 
     const embed2 = new EmbedBuilder()
     .setTitle(`⭐ | Reseña`)
     .setDescription("**Tu review fue enviada con exito.**")
-    .setColor(client.config.prefix)
+    .setColor(client.config.color)
 
     const embed3 = new EmbedBuilder()
     .setAuthor({ name: interaction.user.tag, iconURL: interaction.user.displayAvatarURL({ dynamic: true })})
@@ -93,13 +91,13 @@ module.exports = {
         value: `${botdescripcion}`,
       },
     ])
-    .setColor(client.config.prefix)
+    .setColor(client.config.color)
     .setTimestamp()
     
     const errembed = new EmbedBuilder()
     .setTitle(`⭐ | Reseña`)
     .setDescription("**¡Las reseñas no están configuradas en el servidor!**")
-    .setColor(client.config.prefix)
+    .setColor(client.config.color)
 
     if (interaction.options.getSubcommand() === 'server') {
       try {
@@ -125,7 +123,7 @@ module.exports = {
       } catch {
         const embed2 = new EmbedBuilder()
           .setDescription(`Algo salio mal. Unase al servidor de soporte para informar del error`)
-          .setColor(client.config.prefix)
+          .setColor(client.config.color)
         return interaction.reply({ embeds: [embed2], ephemeral: true });
       }
     }
@@ -137,7 +135,7 @@ module.exports = {
       } catch {
         const embed2 = new EmbedBuilder()
           .setDescription(`Algo salio mal. Unase al servidor de soporte para informar del error`)
-          .setColor(client.config.prefix)
+          .setColor(client.config.color)
         return interaction.reply({ embeds: [embed2], ephemeral: true });
       }
     }

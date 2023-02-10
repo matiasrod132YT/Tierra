@@ -28,17 +28,17 @@ module.exports = {
         const embed = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`El usuario no tiene una cuenta`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed2 = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`Se a quitado con exito $${quitar} de la cuenta de ${Member}`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed3 = new EmbedBuilder()
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`El usuario no tiene esa cantidad de dinero`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         let Data = await cuentaSchema.findOne({ Guild: interaction.guild.id, User: Member.id }).catch(err => { })
         if (!Data) return interaction.reply({ embeds: [embed], ephemeral: true })

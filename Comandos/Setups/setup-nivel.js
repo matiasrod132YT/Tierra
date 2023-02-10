@@ -32,17 +32,17 @@ module.exports = {
         const sistema = nivelstatus.status === true ? "📗 Activado" : "📕 Desabilitado";
 
         const e2 = new EmbedBuilder()
-            .setTitle(`✨ Nivel`)
-            .setThumbnail(client.user.displayAvatarURL())
-            .setColor(client.config.prefix)
-            .setDescription(
-                `Sistema de nivel de **${guild.name}**\n\nEl sistema esta \`${sistema}\`.\n\n¡Usa los botones de abajo para configurar el sistema de nivel del servidor!`
-            )
-            .setFooter({
-                text: guild.name,
-                iconURL: guild.iconURL({ dynamic: true }),
-            })
-            .setTimestamp(new Date());
+        .setTitle(`✨ Nivel`)
+        .setThumbnail(client.user.displayAvatarURL())
+        .setDescription(
+            `Sistema de nivel de **${guild.name}**\n\nEl sistema esta \`${sistema}\`.\n\n¡Usa los botones de abajo para configurar el sistema de nivel del servidor!`
+        )
+        .setFooter({
+            text: guild.name,
+            iconURL: guild.iconURL({ dynamic: true }),
+        })
+        .setTimestamp(new Date())
+        .setColor(client.config.color);
 
         const b = new ButtonBuilder()
             .setLabel(`Activar`)

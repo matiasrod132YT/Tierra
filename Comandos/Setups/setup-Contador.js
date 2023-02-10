@@ -24,19 +24,19 @@ module.exports = {
         const errembed = new EmbedBuilder()
         .setTitle(`🔢 | Contador`)
         .setDescription(`Algo salio mal...`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed = new EmbedBuilder()
         .setTitle(`🔢 | Contador`)
         .setDescription(`Se a creado con exito el sistema de contador en ${canal}`)
         .setTimestamp()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const embed2 = new EmbedBuilder()
         .setTitle(`🔢 | Contador`)
         .setDescription(`Se a remplazado con exito el anterior canal en ${canal}`)
         .setTimestamp()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         contadorSchema.findOne({ GuildID: guildId }, async (err, data) => {
             if(!data) {

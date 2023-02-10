@@ -17,7 +17,7 @@ module.exports = {
         const {options, channel} = interaction;
 
         const embed = new EmbedBuilder()
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         const sugerenciaCanal = options.getChannel('canal')
 

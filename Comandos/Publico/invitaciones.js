@@ -23,7 +23,7 @@ module.exports = {
         const embed = new EmbedBuilder()
         .setTitle(`👥 | INVITACIONES`)
         .setDescription(`**${usuario}** tiene \`${i}\` invitaciones`)
-        .setColor(client.config.prefix)
+        .setColor(client.config.color)
 
         interaction.reply({ embeds: [embed] });
     }
