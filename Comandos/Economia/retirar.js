@@ -7,7 +7,7 @@ module.exports = {
     .setDescription(`Retira dinero de tu cuenta`)
     .addStringOption(option =>
       option
-        .setName("retirar")
+        .setName("cantidad")
         .setDescription("¿Cuanto dinero quieres retirar?")
         .setRequired(true)
     ),

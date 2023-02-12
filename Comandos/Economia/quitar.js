@@ -14,7 +14,7 @@ module.exports = {
     )
     .addNumberOption(option =>
       option
-        .setName("quitar")
+        .setName("cantidad")
         .setDescription("¿Cuanto dinero quieres quitarle?")
         .setRequired(true)
     ),

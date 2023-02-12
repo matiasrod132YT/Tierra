@@ -3,11 +3,11 @@ const cuentaSchema = require("../../schemas/Economia/cuenta");
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName(`economia-depositar`)
+    .setName(`depositar`)
     .setDescription(`Deposita dinero a tu cuenta`)
     .addStringOption(option =>
       option
-        .setName("depositar")
+        .setName("cantidad")
         .setDescription("¿Cuanto dinero quieres depositar?")
         .setRequired(true)
     ),

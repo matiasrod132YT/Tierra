@@ -3,7 +3,7 @@ const cuentaSchema = require("../../schemas/Economia/cuenta");
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName(`economia-pagar`)
+    .setName(`pagar`)
     .setDescription(`Paga a alguien dinero`)
     .addUserOption(option =>
       option
@@ -13,13 +13,13 @@ module.exports = {
     )
     .addNumberOption(option =>
       option
-        .setName("pagar")
+        .setName("cantidad")
         .setDescription("¿Cuanto dinero quieres pagarle?")
         .setRequired(true)
     ),
 
     async execute(interaction, client) {
-        const { user, options, guild } = interaction;
+        const { user, options } = interaction;
 
         const Member = options.getUser("usuario")
         const pagar = options.getNumber("pagar")
@@ -41,6 +41,7 @@ module.exports = {
         .setColor(client.config.color)
 
         const embed5 = new EmbedBuilder()
+        .setAuthor({ name: interaction.user.tag, iconURL: interaction.user.displayAvatarURL({dynamic: true}) })
         .setTitle(`💳 | Banco de ${interaction.guild.name}`)
         .setDescription(`Has pagado \`\`$${pagar}\`\` a ${Member}`)
         .setColor(client.config.color)
