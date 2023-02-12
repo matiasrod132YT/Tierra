@@ -35,7 +35,6 @@ module.exports = {
             .setDescription(`\`\`\`${rest.data.choices[0].text}\`\`\``)
             .setColor(client.config.color)
 
-
             await interaction.editReply({ embeds: [embed] });
             
         } catch(e) {
