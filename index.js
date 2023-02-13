@@ -2,8 +2,6 @@ const {
   Client,
   GatewayIntentBits,
   Partials,
-  ChannelType,
-  Events,
   Collection,
   EmbedBuilder,
 } = require("discord.js");

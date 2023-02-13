@@ -13,10 +13,10 @@ module.exports = {
         const { createdTimestamp, ownerId, description, members, memberCount, premiumTier, premiumSubscriptionCount } = guild;
         const getChannelTypeSize = type => client.channels.cache.filter(channel => type.includes(channel.type)).size;
         const botCount = (await interaction.guild.members.fetch()).filter(member => member.user.bot).size;
-        const icon = guild.iconURL();
+        const icon = guild.iconURL({ size: 1024 });
         
         const embed = new EmbedBuilder()
-                .setAuthor({ name: `${interaction.guild.name}`, iconURL: `${interaction.guild.iconURL({dynamic: true, size: 1024})}`})
+                .setAuthor({ name: `${interaction.guild.name}`, iconURL: icon })
                 .setFields(
                     {
                         name: "📋 Descripcion",
@@ -69,12 +69,8 @@ module.exports = {
                         ].join("\n"),
                         inline: true
                     },
-                    {
-                        name: "BANNER",
-                        value: guild.bannerURL({ size: 512, dynamic: true }) ? "** **" : "No Tiene"
-                    }
                 )
-                .setFooter({ text: `Solicitado por: ${interaction.user.tag}`})
+                .setFooter({ text: `Solicitado por: ${interaction.user.tag}`, iconURL: `${interaction.user.displayAvatarURL()}`})
                 .setThumbnail(icon)
                 .setColor(client.config.color)
             interaction.reply({ embeds: [embed]});
