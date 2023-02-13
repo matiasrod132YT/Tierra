@@ -21,6 +21,7 @@ const client = new Client({
 module.exports = client;
 discordModals(client);
 
+mongoose.set("strictQuery", false)
 mongoose.connect("mongodb+srv://Matiasrod132:Wesersa12345@tierra.dhgdheq.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true
