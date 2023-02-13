@@ -3,7 +3,7 @@ const SuggestionSchema = require('../../../schemas/sugerencia/sugerencia');
 
 module.exports = {
     name: 'interactionCreate',
-    async execute(interaction) {
+    async execute(interaction, client) {
         const {member, guildId, customId, message} = interaction;
 
         if(!interaction.isButton()) return;

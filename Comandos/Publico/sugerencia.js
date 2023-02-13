@@ -14,28 +14,28 @@ module.exports = {
     ),
 
     async execute(interaction, client) {
-      const { options, guildId } = interaction;
+        const { options, guildId } = interaction;
 
-      const sugerencia = options.getString("sugerencia");
+        const sugerencia = options.getString("sugerencia");
 
-      const embed = new EmbedBuilder()
-      .setAuthor({ name: `Sugerencia de ${interaction.user.tag}`, iconURL: `${interaction.user.displayAvatarURL({dynamic: true})}`})
-      .addFields(
-          {name: 'Sugerencia:', value: sugerencia, inline: false},
-          {name: 'Estatus:', value: 'Pendiente...', inline: false},
-      )
-      .setTimestamp()
-      .setColor(client.config.color)
+        const embed = new EmbedBuilder()
+        .setAuthor({ name: `Sugerencia de ${interaction.user.tag}`, iconURL: `${interaction.user.displayAvatarURL({dynamic: true})}`})
+        .addFields(
+            {name: 'Sugerencia:', value: sugerencia, inline: false},
+            {name: 'Estatus:', value: 'Pendiente...', inline: false},
+        )
+        .setTimestamp()
+        .setColor(client.config.color)
 
-      const errEmbed = new EmbedBuilder()
-      .setColor(client.config.color)
-      .setDescription("¡Las sugerencias no están configuradas en el servidor!")
+        const errEmbed = new EmbedBuilder()
+        .setColor(client.config.color)
+        .setDescription("¡Las sugerencias no están configuradas en el servidor!")
 
-      const embed2 = new EmbedBuilder()
-      .setColor(client.config.color)
-      .setDescription('¡Se envió con éxito la sugerencia!')
+        const embed2 = new EmbedBuilder()
+        .setColor(client.config.color)
+        .setDescription('¡Se envió con éxito la sugerencia!')
 
-      sugerenciaSetup.findOne({GuildId: guildId}, async (err, data) => {
+        sugerenciaSetup.findOne({GuildId: guildId}, async (err, data) => {
             if (err) throw err;
 
             if (!data) {
@@ -49,15 +49,19 @@ module.exports = {
                     new ButtonBuilder().setCustomId('sugerencia-aceptar').setLabel('Aceptar').setStyle(ButtonStyle.Success),
                     new ButtonBuilder().setCustomId('sugerencia-rechazar').setLabel('rechazar').setStyle(ButtonStyle.Danger),
                 );
-        
+
                 try {
                     const m = await suggestionChannel.send({embeds: [embed], components: [buttons], fetchReply: true});
                     await interaction.reply({embeds: [embed2], ephemeral: true});
                     await m.react("✅");
                     await m.react("❌");
-        
                 
-        
+                    SuggestionSchema.create({
+                        GuildId: interaction.guild.id,
+                        MessageId: m.id,
+                        Details: sugerencia,
+                    })
+
                 } catch (err) {
                     console.log(err)
                 }
