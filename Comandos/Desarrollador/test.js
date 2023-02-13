@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require("discord.js");
 
 module.exports = {
-    developer: true,
+    desarrollador: true,
     data: new SlashCommandBuilder()
     .setName(`test`)
     .setDescription(`Test de comandos`)
